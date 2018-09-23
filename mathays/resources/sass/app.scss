@@ -17,7 +17,8 @@ h1, .h1,
 h2, .h2, 
 h3, .h3, 
 h4, .h4, 
-h5, .h5 {
+h5, .h5,
+h6, .h6 {
   font-family: $font-family-headers;
   
   &.title {
@@ -30,20 +31,6 @@ h5, .h5 {
   display: none;
 }
 
-.component {
-  .card, > * {
-    animation: .4s ease-in-out both slideUp;
-
-		@for $i from 1 through 12 {
-			&:nth-child(#{$i}) {
-
-				// Delay the animation. Delay increases as items loop.
-				animation-delay: $i * (.05s);
-			}
-		}
-  }
-}
-
 .page-title {
   margin-top: 1.2em;
   margin-bottom: 0.5em;
@@ -54,64 +41,67 @@ h5, .h5 {
   font-weight: 300;
 }
 
-.main-title {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-  transition: .4s;
-  margin-top: 2em;
-  margin-bottom: 2em;
+.splash {
+  background-size: cover;
+  background-position: center top;
+}
 
-  img {
+header {
+  padding-top: 2em;
+
+  .logo-container {
     transition: .4s;
-    width: 6em;
-    height: 6em;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
+
+    svg#logo > g {
+      stroke: #000;
+      fill: transparent;
+    }
   }
 
-  &.hide {
-    opacity: 0;
-    margin-top: -6em;
-    margin-bottom: 0;
+  nav {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
+    transition: .4s;
+    font-family: $font-family-headers;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+
+    a {
+      display: block;
+      padding: 0 18px;
+      position: relative;
+      font-size: 1.3em;
+      transition: .4s;
+      border-right: 1px $yiq-text-dark solid;
+      color: #000;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &.active {
+        text-decoration: underline;
+      }
+
+      &:last-child {
+        border: 0;
+      }
+
+      img {
+        height: 24px;
+        transform: rotate(-15deg)
+      }
+    }
   }
 }
 
 .container {
   max-width: 720px;
-}
-
-.links {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  display: flex;
-  justify-content: center;
-  transition: .4s;
-  font-family: $font-family-headers;
-  font-weight: 300;
-
-  &.large {
-    margin-bottom: 3em;
-
-    a {
-      font-size: 1.5em;
-    }
-  }
-
-  a {
-    display: block;
-    padding: 0 18px;
-    position: relative;
-    font-size: 1.3em;
-    transition: .4s;
-    border-right: 1px $yiq-text-dark solid;
-
-    &:last-child {
-      border: 0;
-    }
-
-    img {
-      height: 24px;
-      transform: rotate(-15deg)
-    }
-  }
 }
 
 .card {
@@ -122,31 +112,45 @@ h5, .h5 {
   img[class^='card-img'] {
     border-radius: 0;
   }
+}
 
-  &.video-card {
-    padding-bottom: 56.25%;
-    // background: #000;
-    position: relative;
-    overflow: hidden;
+.video-card {
+  padding: 0 0 56.25% 0;
+  // background: #000;
+  position: relative;
+  overflow: hidden;
 
-    .bottom-fade {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to bottom, transparent 0%, #fff 70%);
-      height: 40%;
-      z-index: 15;
-    }
+  .bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent 0%, #fff 70%);
+    height: 40%;
+    z-index: 15;
+  }
 
-    .video-child {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 12;
-    }
+  .overlay-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 19;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 12;
   }
 }
 
@@ -205,13 +209,11 @@ a.post-row {
   color: unset;
   margin-bottom: 7px;
   padding-left: 5px;
-  border-left: 1px $yiq-text-dark solid;
+  border-left: 1px $text-muted solid;
   transition: .4s;
   
   &:hover {
     text-decoration: none;
-    border-left: 3px $yiq-text-dark solid;
-
 
     .post-row-title {
       text-decoration: underline;
@@ -227,6 +229,7 @@ a.post-row {
   .post-row-date {
     font-size: 0.9em;
     font-style: italic;
+    color: $text-muted;
   }
 }
 
@@ -267,7 +270,7 @@ a.post-row {
     }
 
     &.active {
-      border-color: $blue;
+      border-color: $text-muted;
     }
 
     @media screen and (max-width: 600px) {
@@ -280,25 +283,34 @@ article p {
   line-height: 1.9em;
 }
 
+footer {
+  margin-top: 4em;
+  padding: 1.5em 1em;
+  text-align: center;
+  color: $text-muted;
+  font-size: 0.8em;
+  border-top: 1px $gray-400 solid;
+}
+
 .loading-container {
+  position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 14px;
+  height: 44px;
   margin-top: 3em;
 }
 
 .loading {
   animation: loadingLine .8s ease-in-out 0s infinite alternate;
-  animation-name: loadingLine;
   background-color: $yiq-text-dark;
   width: 8px;
   height: 8px;
   border-radius: 25px;
 }
 
-@keyframes loadingLine {
-  0% {transform: translateX(-52px)}
-  50% {width: 14px; height: 14px;}
-  100% {transform: translateX(52px)}
+.btn {
+  border-radius: 0;
 }

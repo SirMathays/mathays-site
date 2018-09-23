@@ -6,11 +6,23 @@
 
 .primary-fade-enter {
 	opacity: 0;
+	transform: translateX(10px)
 }
 
 .primary-fade-leave-to {
 	opacity: 0;
-	transform: translateY(25px);
+	transform: translateX(-10px)
+}
+
+/* PRIMARY ELEMENT FADE ANIMATION */
+.splash-fade-enter-active,
+.splash-fade-leave-active {
+    transition: .4s
+}
+
+.splash-fade-enter, .splash-fade-leave-to {
+	opacity: 0;
+	transform: translateY(-100%);
 }
 
 // HORIZONTAL SLIDE ANIMATION
@@ -40,14 +52,8 @@
 	margin-left: -60px;
 }
 
-// slide up animation
-@keyframes slideUp {
-    0% {
-    	opacity: 0;
-    	transform: translateY(25px);
-    }
-    100% {
-    	opacity: 1;
-    	transform: translateY(0);
-    }
+@keyframes loadingLine {
+  0% {transform: translateX(-52px)}
+  50% {width: 14px; height: 14px;}
+  100% {transform: translateX(52px)}
 }

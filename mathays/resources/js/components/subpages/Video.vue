@@ -1,27 +1,31 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <b-card class="video-card bg-dark mb-4" no-body>
-            <youtube 
-                :video-id="video.yid"
-                player-width="100%"
-                player-height="100%"
-                ref="youtube"
-                class="video-child"></youtube>
-        </b-card>
+        <b-container>
+            <b-card class="video-card bg-dark mb-4" no-body>
+                <youtube 
+                    :video-id="video.yid"
+                    player-width="100%"
+                    player-height="100%"
+                    ref="youtube"
+                    class="video-child"></youtube>
+            </b-card>
 
-        <b-card tag="article" class="mb-4" :title="video.title" :subTitle="video.published_at | moment('calendar')">
-            <div class="article-links mt-4 mb-3">
-                <a href="#" :class="show == 'description' && 'active'" @click="show = 'description'">Description</a>
-                <a href="#" v-if="video.blog_post" :class="show == 'story' && 'active'" @click="show = 'story'">Story</a>
-            </div>
-            <transition name="slide-hor" mode="out-in">
-                <div :key="1" v-if="show == 'description'" v-html="video.description || 'No description'"></div>
-                <div :key="2" v-else-if="show == 'story'">
-                    <h4>{{ video.blog_post.title }}</h4>
-                    <div v-html="video.blog_post.body"></div>
+            <article class="mt-4 mb-4">
+                <h1 class="h4">{{ video.title }}</h1>
+                <h2 class="h6 text-muted">{{ video.published_at | moment('calendar') }}</h2>
+                <div class="article-links mt-4 mb-3" v-if="video.blog_post">
+                    <a href="#" :class="show == 'description' && 'active'" @click="e => toggleShow(e, 'description')">Description</a>
+                    <a href="#" :class="show == 'story' && 'active'" @click="e => toggleShow(e, 'story')">Story</a>
                 </div>
-            </transition>
-        </b-card>
+                <transition name="slide-hor" mode="out-in">
+                    <div :key="1" v-if="show == 'description'" v-html="video.description || 'No description'"></div>
+                    <div :key="2" v-else-if="show == 'story'">
+                        <h4>{{ video.blog_post.title }}</h4>
+                        <div v-html="video.blog_post.body"></div>
+                    </div>
+                </transition>
+            </article>
+        </b-container>
     </div>
 </template>
 
@@ -43,6 +47,10 @@ export default {
             if(item)
                 return 'https://img.youtube.com/vi/'+item.yid+'/maxresdefault.jpg'
         },
+        toggleShow(e, value) {
+            e.preventDefault()
+            this.show = value
+        },
         getVideo() {
             var app = this
 
@@ -52,8 +60,7 @@ export default {
                 app.video = resp.data.video
                 app.$root.loading = false
             }).catch(function (resp) {
-                alert("Could not load video")
-                app.$root.loading = false
+                app.$router.push({name: 'not-found'})
             })
         }
     },

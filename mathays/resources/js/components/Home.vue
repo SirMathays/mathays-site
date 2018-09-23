@@ -1,21 +1,26 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <h1 class="page-title">Mathays Productions</h1>
-        <h2 class="h3 page-description text-center">{{ story }}</h2>
-        
-        <b-card-group class="my-4 card-grid gr-2">
-            <router-link :to="{ name: 'video', params: {id: video.yid}}" v-if="video" class="card video-card">
-                <img class="video-child" :src="thumbnail(video)" :alt="video.title">
-            </router-link>
+        <b-container>
+            <h1 class="page-title">Mathays Productions</h1>
+            <h2 class="h3 page-description text-center">{{ story }}</h2>
+        </b-container>
+            
+        <!-- <b-card-group class="my-4 card-grid gr-2"> -->
+        <b-row no-gutters class=" justify-content-center splash my-5 py-4" v-if="video">
+            <b-col cols="11" sm="8" md="6">
+                <router-link :to="{ name: 'video', params: {id: video.yid}}" class="card video-card">
+                    <img class="video-child" :src="thumbnail(video)" :alt="video.title">
+                    <div class="overlay-text">
+                        <h2>NEW VIDEO</h2>
+                        <h4>{{ video.title }}</h4>
+                    </div>
+                </router-link>
+            </b-col>
+        </b-row>
 
-            <router-link :to="{ name: 'post', params: {slug: blogpost.slug}}" v-if="blogpost" class="card video-card">
-                <div class="bottom-fade"></div>
-                <div class="card-body video-child">
-                    <h4 class="card-title">{{ blogpost.title }}</h4>
-                    <div v-html="blogpost.body"></div>
-                </div>
-            </router-link>
-        </b-card-group>
+        <b-container class="text-center">
+            <b-btn :to="{ name: 'blog' }" size="lg" variant="outline-dark" block class="my-0">Read blog</b-btn>
+        </b-container>
     </div>
 </template>
 

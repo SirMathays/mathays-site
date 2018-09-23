@@ -4,6 +4,8 @@ import Videos from './components/Videos.vue'
 import Video from './components/subpages/Video.vue'
 import Post from './components/subpages/Post.vue'
 
+import Error404 from './components/errors/404.vue'
+
 const routes = [
     {
         path: '/',
@@ -16,7 +18,7 @@ const routes = [
         component: Blog,
     },
     {
-        path: '/blog/:slug',
+        path: '/blog/:year/:month/:slug',
         name: 'post',
         component: Post,
     },
@@ -30,12 +32,19 @@ const routes = [
         name: 'video',
         component: Video
     },
+    {
+        path: '/404',
+        name: 'not-found',
+        component: Error404,
+        props: { message: 'page not found' }
+    },
     {   
         path: '*', 
-        redirect: { 
-            name: 'home' 
-        } 
-    }
+        name: '404',
+        redirect: {
+            name: 'not-found'
+        }
+    },
 ]
 
 export default {

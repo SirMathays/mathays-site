@@ -12,11 +12,11 @@
 */
 
 Route::group(['prefix' => 'v1/api'], function() {
-    Route::get('get-home-material', 'HomeController@home');
-    Route::get('get-blog', 'HomeController@blog');
-    Route::get('get-videos', 'HomeController@videos');
-    Route::post('get-video', 'HomeController@video');
-    Route::post('get-post', 'HomeController@post');
+    Route::get('get-home-material', 'PublicController@home');
+    Route::get('get-blog', 'PublicController@blog');
+    Route::get('get-videos', 'PublicController@videos');
+    Route::post('get-video', 'PublicController@video');
+    Route::post('get-post', 'PublicController@post');
 });
 
 Auth::routes();
@@ -27,8 +27,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::group([], function () {
     if(!request()->ajax()) {
-        Route::get('/{vue?}', function() {
-            return view('index');
-        })->where('vue', '[\/\w\.-]*');
+        Route::get('/{vue?}', 'PublicController@index')->where('vue', '[\/\w\.-]*');
     }
 });

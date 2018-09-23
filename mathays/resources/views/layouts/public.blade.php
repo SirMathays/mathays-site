@@ -18,6 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .splash {
+            background: repeating-linear-gradient(
+                -45deg, 
+                black 0px, black 2px, 
+                rgba(0,0,0,0.5) 2px, rgba(0,0,0,0.5) 4px
+            ), url("@yield('bg-image')");
+        }
+    </style>
 </head>
 <body>
     <div id="app">

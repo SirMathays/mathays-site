@@ -1,29 +1,32 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <h1>Newest video</h1>
-        <b-card v-if="newest" overlay
-            :img-src="thumbnail(newest)"
-            :img-alt="newest.title"
-            text-variant="white"
-            :title="newest.title"
-            tag="a"
-            href="#"
-            @click="e => linkTo(e, newest.yid)"
-            class="mb-5">
-        </b-card>
+        <b-row no-gutters class=" justify-content-center splash my-5 py-4">
+            <b-col cols="11" sm="8" md="6">
+                <b-card v-if="newest" overlay
+                    :img-src="thumbnail(newest)"
+                    :img-alt="newest.title"
+                    text-variant="white"
+                    :title="newest.title"
+                    tag="a"
+                    href="#"
+                    @click="e => linkTo(e, newest.yid)">
+                </b-card>
+            </b-col>
+        </b-row>
 
-        <h2>Videos</h2>
-        <b-card-group class="card-grid gr-3 mb-4">
-            <b-card v-if="videos.length > 0" v-for="(video, index) in videos" :key="index"
-                img-top
-                :img-src="thumbnail(video)"
-                :img-alt="video.title"
-                :title="video.title"
-                tag="a"
-                href="#"
-                @click="e => linkTo(e, video.yid)">
-            </b-card>
-        </b-card-group>   
+        <b-container>
+            <b-card-group class="card-grid gr-3 mb-4">
+                <b-card v-if="videos.length > 0" v-for="(video, index) in videos" :key="index"
+                    img-top
+                    :img-src="thumbnail(video)"
+                    :img-alt="video.title"
+                    tag="a"
+                    href="#"
+                    @click="e => linkTo(e, video.yid)">
+                    <h6 style="margin: 0">{{ video.title }}</h6>
+                </b-card>
+            </b-card-group>   
+        </b-container>
     </div>
 </template>
 

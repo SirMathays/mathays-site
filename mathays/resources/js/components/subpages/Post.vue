@@ -1,8 +1,12 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <b-card tag="article" class="mb-4" :title="post.title" :subTitle="post.created_at | moment('calendar')">
-            <div class="mt-3" v-html="post.body"></div>
-        </b-card> 
+        <b-container>
+            <article class="mt-4 mb-4" v-if="post">
+                <h1 class="h4">{{ post.title }}</h1>
+                <h2 class="h6 text-muted">{{ post.created_at | moment('calendar') }}</h2>
+                <div class="mt-3" v-html="post.body"></div>
+            </article> 
+        </b-container>        
     </div>
 </template>
 
@@ -18,13 +22,14 @@ export default {
             var app = this
 
             axios.post('/v1/api/get-post', {
+                year: this.$route.params.year,
+                month: this.$route.params.month,
                 slug: this.$route.params.slug
             }).then(function (resp) {
                 app.post = resp.data.post
                 app.$root.loading = false
             }).catch(function (resp) {
-                alert("Could not load video")
-                app.$root.loading = false
+                app.$router.push({name: 'not-found'})
             })
         }
     },
