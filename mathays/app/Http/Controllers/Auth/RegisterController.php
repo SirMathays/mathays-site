@@ -2,7 +2,7 @@
 
 namespace Mathays\Http\Controllers\Auth;
 
-use Mathays\User;
+use Mathays\Person;
 use Mathays\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -59,11 +59,11 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \Mathays\User
+     * @return \Mathays\Person
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Person::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

@@ -1,14 +1,304 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito|Josefin+Sans:300,400,700');
 
 // Variables
 @import 'variables';
 
+// Animations
+@import 'animations';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+$desktopWidth: 711px;
+
+h1, .h1, 
+h2, .h2, 
+h3, .h3, 
+h4, .h4, 
+h5, .h5 {
+  font-family: $font-family-headers;
+  
+  &.title {
+    border-left: 0.2rem $blue solid;
+    padding-left: 3px;
+  }
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.component {
+  .card, > * {
+    animation: .4s ease-in-out both slideUp;
+
+		@for $i from 1 through 12 {
+			&:nth-child(#{$i}) {
+
+				// Delay the animation. Delay increases as items loop.
+				animation-delay: $i * (.05s);
+			}
+		}
+  }
+}
+
+.page-title {
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.page-description {
+  font-weight: 300;
+}
+
+.main-title {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  transition: .4s;
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+  img {
+    transition: .4s;
+    width: 6em;
+    height: 6em;
+  }
+
+  &.hide {
+    opacity: 0;
+    margin-top: -6em;
+    margin-bottom: 0;
+  }
+}
+
+.container {
+  max-width: 720px;
+}
+
+.links {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  transition: .4s;
+  font-family: $font-family-headers;
+  font-weight: 300;
+
+  &.large {
+    margin-bottom: 3em;
+
+    a {
+      font-size: 1.5em;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 0 18px;
+    position: relative;
+    font-size: 1.3em;
+    transition: .4s;
+    border-right: 1px $yiq-text-dark solid;
+
+    &:last-child {
+      border: 0;
+    }
+
+    img {
+      height: 24px;
+      transform: rotate(-15deg)
+    }
+  }
+}
+
+.card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+
+  img[class^='card-img'] {
+    border-radius: 0;
+  }
+
+  &.video-card {
+    padding-bottom: 56.25%;
+    // background: #000;
+    position: relative;
+    overflow: hidden;
+
+    .bottom-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, transparent 0%, #fff 70%);
+      height: 40%;
+      z-index: 15;
+    }
+
+    .video-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 12;
+    }
+  }
+}
+
+a.card {
+  color: unset;
+  transition: .4s;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+}
+
+.card-group.card-grid {
+  display: grid;
+  grid-gap: 2.2em 1.5em;
+
+  @media screen and (max-width: 650px) {
+    grid-gap: 1.8em 1.5em;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-gap: 1em;
+  }
+
+  &.gr-2 {
+    grid-template-columns: auto auto;
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: auto; 
+    }
+  }
+
+  &.gr-3 {
+    grid-template-columns: auto auto auto;
+
+    @media screen and (max-width: 650px) {
+      grid-template-columns: auto auto;      
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: auto; 
+    }
+  }
+}
+
+p.post-group-title {
+  margin: 0 0 3px 0;
+  color: $gray-600;
+  font-family: $font-family-headers;
+}
+
+a.post-row {
+  display: block;
+  color: unset;
+  margin-bottom: 7px;
+  padding-left: 5px;
+  border-left: 1px $yiq-text-dark solid;
+  transition: .4s;
+  
+  &:hover {
+    text-decoration: none;
+    border-left: 3px $yiq-text-dark solid;
+
+
+    .post-row-title {
+      text-decoration: underline;
+    }
+  }
+
+  .post-row-title {
+    display: block;
+    font-family: $font-family-headers;
+    font-size: 1.2em;
+  }
+  
+  .post-row-date {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+}
+
+.people-container {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+
+  .person {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 10px 15px;
+
+    .avatar {
+      margin-bottom: 7px;
+    }
+  }
+}
+
+.avatar {
+  border-radius: 50px;
+}
+
+.article-links {
+  display: flex;
+  margin: 1rem 0 1.5rem 0;
+
+  a {
+    display: block;
+    padding: 5px 15px;
+    border-bottom: 1px transparent solid;
+    font-family: $font-family-headers;
+    text-align: center;
+    color: unset;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.active {
+      border-color: $blue;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%; 
+    }
+  }
+}
+
+article p {
+  line-height: 1.9em;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 14px;
+  margin-top: 3em;
+}
+
+.loading {
+  animation: loadingLine .8s ease-in-out 0s infinite alternate;
+  animation-name: loadingLine;
+  background-color: $yiq-text-dark;
+  width: 8px;
+  height: 8px;
+  border-radius: 25px;
+}
+
+@keyframes loadingLine {
+  0% {transform: translateX(-52px)}
+  50% {width: 14px; height: 14px;}
+  100% {transform: translateX(52px)}
 }

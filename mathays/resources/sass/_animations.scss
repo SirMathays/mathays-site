@@ -1,0 +1,53 @@
+/* PRIMARY ELEMENT FADE ANIMATION */
+.primary-fade-enter-active,
+.primary-fade-leave-active {
+    transition: .4s
+}
+
+.primary-fade-enter {
+	opacity: 0;
+}
+
+.primary-fade-leave-to {
+	opacity: 0;
+	transform: translateY(25px);
+}
+
+// HORIZONTAL SLIDE ANIMATION
+.slide-hor-enter-active,
+.slide-hor-leave-active {
+    transition: .2s
+}
+
+.slide-hor-enter {
+	opacity: 0;
+	transform: translateX(10px);
+}
+
+.slide-hor-leave-to {
+	opacity: 0;
+	transform: translateX(-10px);
+}
+
+/* ANIMATION */
+.opacity-enter-active,
+.opacity-leave-active {
+	transition: all .4s;
+}
+
+.opacity-enter, .opacity-leave-to {
+	opacity: 0;
+	margin-left: -60px;
+}
+
+// slide up animation
+@keyframes slideUp {
+    0% {
+    	opacity: 0;
+    	transform: translateY(25px);
+    }
+    100% {
+    	opacity: 1;
+    	transform: translateY(0);
+    }
+}

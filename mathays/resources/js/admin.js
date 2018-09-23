@@ -3,11 +3,6 @@ require('./bootstrap')
 
 window.Vue = require('vue')
 
-// VUE ROUTER
-import VueRouter from 'vue-router'
-window.Vue.use(VueRouter)
-import router from './router'
-
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
@@ -22,17 +17,12 @@ const app = new Vue({
     router: new VueRouter(router),
     data() {
         return {
-            loading: true
-        }
-    },
-    watch: {
-        $route(to, from) {
-            if(from != to) this.loading = true
+            loading: false
         }
     },
     computed: {
-        homeActive() {
-            return this.$route.name == 'home'
+        indexActive() {
+            return this.$route.name == 'index'
         }
     }
 })

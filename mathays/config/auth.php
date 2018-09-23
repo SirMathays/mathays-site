@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Mathays\User::class,
+            'model' => Mathays\Person::class,
         ],
 
         // 'users' => [
