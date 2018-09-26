@@ -14,7 +14,6 @@ Vue.use(VueMoment)
 
 const app = new Vue({
     el: '#app',
-    router: new VueRouter(router),
     data() {
         return {
             loading: false

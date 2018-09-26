@@ -1,10 +1,10 @@
-import Home from './components/Home.vue'
-import Blog from './components/Blog.vue'
-import Videos from './components/Videos.vue'
-import Video from './components/subpages/Video.vue'
-import Post from './components/subpages/Post.vue'
+import Home from './pages/Home.vue'
+import Blog from './pages/Blog.vue'
+import Videos from './pages/Videos.vue'
+import Video from './pages/subpages/Video.vue'
+import Post from './pages/subpages/Post.vue'
 
-import Error404 from './components/errors/404.vue'
+import Error404 from './pages/error/404.vue'
 
 const routes = [
     {

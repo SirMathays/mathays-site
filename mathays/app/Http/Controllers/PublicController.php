@@ -19,12 +19,7 @@ class PublicController extends Controller
      */
     public function index()
     {
-        $video = Video::orderBy('published_at', 'desc')->first();
-        $image = 'https://img.youtube.com/vi/'.$video->yid.'/maxresdefault.jpg';
-
-        return view('index', [
-            'image' => $image
-        ]);
+        return view('index');
     }
 
     public function home()

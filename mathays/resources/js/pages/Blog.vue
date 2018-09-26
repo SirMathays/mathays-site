@@ -1,7 +1,7 @@
 <template>
     <div class="component" v-if="!$root.loading">
         <b-container>
-            <h1>newest post</h1>
+            <h2 class="mt-4">newest post</h2>
             <router-link :to="{ name: 'post', params: {year: newest.pub_year, month: newest.pub_month, slug: newest.slug}}" v-if="newest" class="card video-card mb-5">
                 <div class="bottom-fade"></div>
                 <div class="card-body video-child">
@@ -10,7 +10,9 @@
                     <div v-html="newest.body"></div>
                 </div>
             </router-link>
-
+        </b-container>
+        
+        <b-container>
             <h2>previous posts</h2>
             <b-card class="post-list mb-4">
                 <template v-for="(group, groupIndex) in blogposts">

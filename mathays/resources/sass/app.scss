@@ -20,11 +20,36 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   font-family: $font-family-headers;
+  font-weight: 300;
   
   &.title {
     border-left: 0.2rem $blue solid;
     padding-left: 3px;
   }
+}
+
+.bordered {
+  border-bottom: 1px black solid;
+  padding: 0.6em 0 0.1em;
+  margin: 0 0 0.1em;
+}
+
+#app {
+  transition: .4s;
+
+  &.darken {
+    background-color: darken($gray-900, 3) !important;
+    color: white  !important;
+
+    header {
+      background-color: darken($gray-900, 3) !important;
+      border-color: transparent;
+    }
+  }
+}
+
+.bg-black {
+  background-color: darken($gray-900, 3) !important;
 }
 
 [v-cloak] {
@@ -47,41 +72,38 @@ h6, .h6 {
 }
 
 header {
-  padding-top: 2em;
+  padding: 2em 0 1.4em 0;
+  background: #fff;
+  border-bottom: 1px #000 dotted;
 
   .logo-container {
     transition: .4s;
     margin-bottom: 2em;
     display: flex;
     justify-content: center;
-
-    svg#logo > g {
-      stroke: #000;
-      fill: transparent;
-    }
   }
 
   nav {
-    margin-top: 2em;
-    margin-bottom: 2em;
     display: flex;
     justify-content: center;
     transition: .4s;
     font-family: $font-family-headers;
     font-weight: 300;
     letter-spacing: 1.5px;
+    padding: .4em 0;
 
     a {
       display: block;
-      padding: 0 18px;
+      padding: 0 1.2em;
       position: relative;
       font-size: 1.3em;
       transition: .4s;
-      border-right: 1px $yiq-text-dark solid;
+      border-right: 1px #000 solid;
       color: #000;
 
       &:hover {
         text-decoration: none;
+        color: #000;
       }
 
       &.active {
@@ -90,11 +112,6 @@ header {
 
       &:last-child {
         border: 0;
-      }
-
-      img {
-        height: 24px;
-        transform: rotate(-15deg)
       }
     }
   }
@@ -107,7 +124,6 @@ header {
 .card {
   border: 0;
   border-radius: 0;
-  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
 
   img[class^='card-img'] {
     border-radius: 0;
@@ -120,6 +136,13 @@ header {
   position: relative;
   overflow: hidden;
 
+  &:hover{
+    .bottom-fade::after {
+      opacity: 1;
+      bottom: 1.2em;
+    }
+  }
+
   .bottom-fade {
     position: absolute;
     bottom: 0;
@@ -128,6 +151,24 @@ header {
     background: linear-gradient(to bottom, transparent 0%, #fff 70%);
     height: 40%;
     z-index: 15;
+
+    &::after {
+      content: 'Read more';
+      font-family: $font-family-headers;
+      position: absolute;
+      bottom: 0.7em;
+      text-align: center;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: .4s;
+      font-weight: 300;
+
+      @media screen and (max-width: 576px) {
+        opacity: 1;
+        bottom: 1.2em;
+      }
+    }
   }
 
   .overlay-text {
@@ -142,6 +183,25 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+      .text-container {
+        border-color: transparent;
+        background-color: #fff;
+        color: #000;
+      }
+    }
+
+    .text-container {
+      text-align: center !important;
+      border: 1px white dotted;
+      padding: 0.7em 1em;
+      transition: .4s;
+
+      *:last-child {
+        margin-bottom: -4px;
+      }
+    }
   }
 
   .video-child {
@@ -159,8 +219,6 @@ a.card {
   transition: .4s;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2);
     text-decoration: none;
   }
 }
@@ -202,15 +260,21 @@ p.post-group-title {
   margin: 0 0 3px 0;
   color: $gray-600;
   font-family: $font-family-headers;
+  font-weight: 300;
+}
+
+a.post-row, .post-header {
+  padding-left: 5px;
+  border-left: 1px $text-muted solid;
 }
 
 a.post-row {
   display: block;
   color: unset;
   margin-bottom: 7px;
-  padding-left: 5px;
-  border-left: 1px $text-muted solid;
   transition: .4s;
+  font-family: $font-family-headers;
+  font-weight: 300;
   
   &:hover {
     text-decoration: none;
@@ -222,13 +286,11 @@ a.post-row {
 
   .post-row-title {
     display: block;
-    font-family: $font-family-headers;
     font-size: 1.2em;
   }
   
   .post-row-date {
     font-size: 0.9em;
-    font-style: italic;
     color: $text-muted;
   }
 }
@@ -304,7 +366,7 @@ footer {
 }
 
 .loading {
-  animation: loadingLine .8s ease-in-out 0s infinite alternate;
+  animation: loadingLine 1s ease-in-out 0s infinite alternate;
   background-color: $yiq-text-dark;
   width: 8px;
   height: 8px;
@@ -313,4 +375,40 @@ footer {
 
 .btn {
   border-radius: 0;
+  
+  &.btn-dotted {
+    border-style: dotted;
+  }
+}
+
+.video-title {
+  position: absolute;
+  background-color: #fff;
+  font-family: inherit;
+  top: .6em;
+  display:flex;
+  align-items: center;
+  padding: 0 0.2em 0 0.4em;
+  height: 1.6em;
+  font-weight: 300;
+  font-family: $font-family-headers;
+  
+  p {
+    margin: 0;
+  }
+}
+
+.video-title::after {
+  content: "";
+  left: 100%;
+  top: 50%;
+  border: solid #fff;
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-width: .8em;
+  margin-top: -.8em;
 }

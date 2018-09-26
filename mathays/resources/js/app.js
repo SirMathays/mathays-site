@@ -17,12 +17,18 @@ Vue.use(VueYouTubeEmbed)
 import VueMoment from 'vue-moment'
 Vue.use(VueMoment)
 
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate)
+
+Vue.component('v-container', require('./components/VideoContainer.vue'))
+
 const app = new Vue({
     el: '#app',
     router: new VueRouter(router),
     data() {
         return {
-            loading: true
+            loading: true,
+            darken: false,
         }
     },
     watch: {

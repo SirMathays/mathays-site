@@ -1,17 +1,41 @@
 /* PRIMARY ELEMENT FADE ANIMATION */
 .primary-fade-enter-active,
 .primary-fade-leave-active {
-    transition: .4s
+	transition: .4s;
+
+	.splash {
+		transition: .4s;
+
+		> * {
+			transition: .4s;
+		}
+	}
 }
 
 .primary-fade-enter {
 	opacity: 0;
-	transform: translateX(10px)
+	transform: translateX(10px);
+
+	.splash {
+		transform: translateX(-10px) !important;
+
+		> * {
+			transform: translateX(10px);
+		}
+	}
 }
 
 .primary-fade-leave-to {
 	opacity: 0;
-	transform: translateX(-10px)
+	transform: translateX(-10px);
+
+	.splash {
+		transform: translateX(10px) !important;
+
+		> * {
+			transform: translateX(-10px);
+		}
+	}
 }
 
 /* PRIMARY ELEMENT FADE ANIMATION */
@@ -53,7 +77,7 @@
 }
 
 @keyframes loadingLine {
-  0% {transform: translateX(-52px)}
+  0% {transform: translateX(-52px); background-color: #3490dc}
   50% {width: 14px; height: 14px;}
-  100% {transform: translateX(52px)}
+  100% {transform: translateX(52px); background-color: #673ab7}
 }

@@ -1,23 +1,34 @@
 @extends('layouts.public')
 
-@section('bg-image', $image)
-
 @section('content')
-    <header v-bind:class="homeActive && 'header-splash'" v-cloak>
+    <header v-cloak>
         <div class="logo-container">
             <router-link :to="{ name: 'home' }">
-                <svg width="116px" height="101px" id="logo">
-                    <g transform="translate(3.388229, 2.948889)" stroke-width="5" stroke="#fff" fill="transparent">
-                        <polygon points="0 95 0 5 32 50 64 5 64 95"></polygon>
-                        <path d="M76,98 L76,0 C98.6666667,0 110,8.40017863 110,25.2005359 C110,42.0008932 98.6666667,49.9340479 76,49"></path>
-                    </g>
+                <svg width="70px" height="101px" id="logo">
+                    <defs>
+                        <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(45)">
+                            <stop offset="0%" stop-color="#3490dc"/>
+                            <stop offset="100%" stop-color="#673ab7"/>
+                        </linearGradient>
+
+                        {{-- <linearGradient id="fill" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(45)">
+                            <stop offset="0%" stop-color="#673ab7"/>
+                            <stop offset="100%" stop-color="#3490dc"/>
+                        </linearGradient> --}}
+                    </defs>
+                    <polygon 
+                        transform="translate(3, 3)"
+                        stroke-width="6"
+                        stroke="url(#stroke)"
+                        fill="transparent"
+                        points="0 95 0 5 32 50 64 5 64 95"/>
                 </svg>
             </router-link>
         </div>
 
         <nav>
-            <router-link :to="{ name: 'blog' }">blog</router-link>
             <router-link :to="{ name: 'videos' }">videos</router-link>
+            <router-link :to="{ name: 'blog' }">blog</router-link>
         </nav>
     </header>
 

@@ -1,9 +1,11 @@
 <template>
     <div class="component" v-if="!$root.loading">
         <b-container>
-            <article class="mt-4 mb-4" v-if="post">
-                <h1 class="h4">{{ post.title }}</h1>
-                <h2 class="h6 text-muted">{{ post.created_at | moment('calendar') }}</h2>
+            <article class="mt-5 mb-4" v-if="post">
+                <div class="post-header">
+                    <h1 class="h4">{{ post.title }}</h1>
+                    <h2 class="h6 text-muted">{{ post.created_at | moment('calendar') }}</h2>
+                </div>
                 <div class="mt-3" v-html="post.body"></div>
             </article> 
         </b-container>        
