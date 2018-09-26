@@ -29,6 +29,7 @@
         <nav>
             <router-link :to="{ name: 'videos' }">videos</router-link>
             <router-link :to="{ name: 'blog' }">blog</router-link>
+            @if(Auth::check())<a href="/admin">admin</a>@endif
         </nav>
     </header>
 

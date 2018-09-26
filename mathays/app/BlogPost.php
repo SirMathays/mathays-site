@@ -17,12 +17,12 @@ class BlogPost extends Model
 
     public function getPubYearAttribute()
     {
-        return $this->published_at->year;
+        return $this->published_at ? $this->published_at->year : NULL;
     }
 
     public function getPubMonthAttribute()
     {
-        return $this->published_at->month;
+        return $this->published_at ? $this->published_at->month : NULL;
     }
 
     public function scopeSlug($query, $slug)
@@ -53,5 +53,11 @@ class BlogPost extends Model
     public function scopeIsVideoStory($query)
     {
         return $query->whereNotNull('video_id');
+    }
+
+    public function publish()
+    {
+        $this->published_at = now();
+        $this->save();
     }
 }

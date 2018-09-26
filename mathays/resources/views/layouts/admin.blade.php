@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/admin.js') }}" defer></script> --}}
+    @if(empty($excludeVue)) <script src="{{ asset('js/admin.js') }}" defer></script> @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -18,10 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="admin">
-        <main>
+        <main class="pb-4">
             @yield('content')
         </main>
     </div>

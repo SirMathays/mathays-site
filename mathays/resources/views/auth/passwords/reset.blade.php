@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin', ['excludeVue' => true])
 
 @section('content')
 <div class="container">
