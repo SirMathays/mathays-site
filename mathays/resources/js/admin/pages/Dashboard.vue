@@ -1,8 +1,10 @@
 <template>
     <b-container v-if="!$root.loading">
         <b-jumbotron header="Hello, Matti!" lead="Let's create something!">
-            <p>Last video published {{ video.published_at | moment("from", "now") }}!</p>
-            <p>Last blog post published {{ blogpost.published_at | moment("from", "now") }}!</p>
+            <p v-if="video">Last video published {{ video.published_at | moment("from", "now") }}!</p>
+            <p v-else>No video published! Go and publish one!</p>
+            <p v-if="blogpost">Last blog post published {{ blogpost.published_at | moment("from", "now") }}!</p>
+            <p v-else>No blog post published! Go and publish one!</p>
         </b-jumbotron>
 
         <b-btn :to="{ name: 'video-edit' }" size="lg" variant="primary" block class="my-4">Publish a video</b-btn>
