@@ -4,7 +4,7 @@
             <article class="mt-5 mb-4" v-if="post">
                 <div class="post-header">
                     <h1 class="h4">{{ post.title }}</h1>
-                    <h2 class="h6 text-muted">{{ post.created_at | moment('calendar') }}</h2>
+                    <h2 class="h6">{{ post.created_at | moment('calendar') }}</h2>
                 </div>
                 <div class="mt-3" v-html="post.body"></div>
             </article> 

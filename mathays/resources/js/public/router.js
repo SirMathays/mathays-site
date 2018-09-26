@@ -4,7 +4,7 @@ import Videos from './pages/Videos.vue'
 import Video from './pages/subpages/Video.vue'
 import Post from './pages/subpages/Post.vue'
 
-import Error404 from './pages/error/404.vue'
+import Error404 from '../error/404.vue'
 
 const routes = [
     {

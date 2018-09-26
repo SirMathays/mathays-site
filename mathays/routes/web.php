@@ -21,12 +21,10 @@ Route::group(['prefix' => 'v1/api'], function() {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/admin', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
+    if(!request()->ajax()) Route::get('/{vue?}', 'HomeController@index')->where('vue', '[\/\w\.-]*');
 });
 
 Route::group([], function () {
-    if(!request()->ajax()) {
-        Route::get('/{vue?}', 'PublicController@index')->where('vue', '[\/\w\.-]*');
-    }
+    if(!request()->ajax()) Route::get('/{vue?}', 'PublicController@index')->where('vue', '[\/\w\.-]*');
 });

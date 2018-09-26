@@ -6,7 +6,7 @@ window.Vue = require('vue')
 // VUE ROUTER
 import VueRouter from 'vue-router'
 window.Vue.use(VueRouter)
-import router from './router'
+import router from './public/router'
 
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
@@ -28,7 +28,6 @@ const app = new Vue({
     data() {
         return {
             loading: true,
-            darken: false,
         }
     },
     watch: {

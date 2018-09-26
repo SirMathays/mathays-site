@@ -34,22 +34,13 @@ h6, .h6 {
   margin: 0 0 0.1em;
 }
 
-#app {
-  transition: .4s;
-
-  &.darken {
-    background-color: darken($gray-900, 3) !important;
-    color: white  !important;
-
-    header {
-      background-color: darken($gray-900, 3) !important;
-      border-color: transparent;
-    }
-  }
-}
-
 .bg-black {
   background-color: darken($gray-900, 3) !important;
+  transition: 1s ease-out;
+
+  &.darken {
+    background-color: #000 !important;
+  }
 }
 
 [v-cloak] {
@@ -266,6 +257,12 @@ p.post-group-title {
 a.post-row, .post-header {
   padding-left: 5px;
   border-left: 1px $text-muted solid;
+}
+
+.post-header {
+  h6 {
+    color: $text-muted;
+  }
 }
 
 a.post-row {

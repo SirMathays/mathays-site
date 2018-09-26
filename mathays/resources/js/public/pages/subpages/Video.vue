@@ -1,15 +1,15 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <v-container class="py-3 mb-4" bg="black" :no-stripe="true">
+        <v-container class="py-3 mb-4" :class="{darken: darken}" bg="black" :no-stripe="true">
             <b-card class="video-card bg-dark" no-body>
                 <youtube 
                     :video-id="video.yid"
                     player-width="100%"
                     player-height="100%"
                     ref="youtube"
-                    @playing="darken(true)"
-                    @paused="darken(false)"
-                    @ended="darken(false)"
+                    @playing="darken = true"
+                    @paused="darken = false"
+                    @ended="darken = false"
                     class="video-child"></youtube>
             </b-card>
         </v-container>
@@ -18,7 +18,7 @@
             <article class="mt-4 mb-4">
                 <div class="post-header">
                     <h1 class="h4">{{ video.title }}</h1>
-                    <h2 class="h6 text-muted">{{ video.published_at | moment('calendar') }}</h2>
+                    <h2 class="h6">{{ video.published_at | moment('calendar') }}</h2>
                 </div>
 
                 <div class="article-links mt-4 mb-3" v-if="video.blog_post">
@@ -42,7 +42,8 @@ export default {
     data() {
         return {
             video: [],
-            show: 'description'
+            show: 'description',
+            darken: false
         }
     },
     watch: {
@@ -54,10 +55,6 @@ export default {
         thumbnail(item) {
             if(item)
                 return 'https://img.youtube.com/vi/'+item.yid+'/maxresdefault.jpg'
-        },
-        darken(state) {
-            console.log(this.$root.darken)
-            this.$root.darken = state
         },
         toggleShow(e, value) {
             e.preventDefault()
