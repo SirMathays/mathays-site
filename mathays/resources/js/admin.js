@@ -17,11 +17,15 @@ Vue.use(VueYouTubeEmbed)
 import VueMoment from 'vue-moment'
 Vue.use(VueMoment)
 
+import store from './store'
+import Toaster from './admin/components/Toaster'
+
 const app = new Vue({
     el: '#admin',
     router: new VueRouter(router),
     data() {
         return {
+            store,
             loading: true
         }
     },
@@ -32,5 +36,8 @@ const app = new Vue({
     },
     computed: {
         // 
+    },
+    components: {
+        Toaster
     }
 })

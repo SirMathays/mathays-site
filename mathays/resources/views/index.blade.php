@@ -43,7 +43,7 @@
 
     <div class="container">
         <footer v-if="!loading">
-            website design by Matti Suoraniemi 2018
+            website design by Matti Suoraniemi 2018 | <a class="text-muted" href="/admin">admin</a>
         </footer>
     </div>
 @endsection

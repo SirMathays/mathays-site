@@ -19,7 +19,7 @@ class CreateBlogPostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('image')->nullable();
-            $table->longText('body');
+            $table->longText('body')->nullable();
             $table->timestamps();
         });
 

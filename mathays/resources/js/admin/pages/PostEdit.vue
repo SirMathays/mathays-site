@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import { VueEditor, Quill } from "vue2-editor";
+import { VueEditor, Quill } from "vue2-editor"
+import _ from 'lodash'
 
 export default {
     data() {
@@ -28,6 +29,7 @@ export default {
                 body: undefined,
                 published_at: undefined,
             },
+            errors: [],
             customToolbar: [
                 [{'header': [1, 2, 3, 4, 5, 6, false]}],
                 ['bold', 'italic', 'underline'],
@@ -61,7 +63,8 @@ export default {
                 app.$router.replace({name: 'post-edit', params: {id: resp.data.post.id}})
             }).catch(function (err) {
                 app.saving = false
-                console.log(err.response.message)
+                var errs = err.response.data.errors
+                app.$root.store.setMessageAction(errs[Object.keys(errs)[0]][0], 'danger')
             })
         }
     },

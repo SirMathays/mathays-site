@@ -81,3 +81,20 @@
   50% {width: 14px; height: 14px;}
   100% {transform: translateX(52px); background-color: #673ab7}
 }
+
+// Toaster list
+.toaster-list-enter-active, .toaster-list-leave-active {
+  transition: all .5s;
+}
+
+.toaster-list-enter, .toaster-list-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.toaster-list-leave-active {
+  position: absolute;
+}
+
+.toaster-list-move {
+  transition: transform .5s;
+}

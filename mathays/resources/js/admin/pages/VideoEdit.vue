@@ -78,7 +78,8 @@ export default {
                 app.$router.replace({name: 'video-edit', params: {id: resp.data.video.id}})
             }).catch(function (err) {
                 app.saving = false
-                console.log(err.response.message)
+                var errs = err.response.data.errors
+                app.$root.store.setMessageAction(errs[Object.keys(errs)[0]][0], 'danger')
             })
         }
     },

@@ -35,7 +35,7 @@ class VideoController extends Controller
         // dd($request->input());
         $request->validate([
             'video.id' => 'exists:videos,id',
-            'video.yid' => 'unique:videos,yid,'.$request->input('video.id'),
+            'video.yid' => 'required|unique:videos,yid,'.$request->input('video.id'),
             'video.title' => 'required',
             'video.description' => 'required_if:publish,true',
             'publish' => 'boolean',

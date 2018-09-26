@@ -409,3 +409,18 @@ footer {
   border-width: .8em;
   margin-top: -.8em;
 }
+
+/**
+ * Toaster
+ */
+.toaster {
+  position: fixed;
+  bottom: 0;
+  padding: 1.5rem;
+  z-index: 100;
+
+  @media screen and (min-width: $md) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
