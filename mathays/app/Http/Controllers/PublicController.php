@@ -52,9 +52,7 @@ class PublicController extends Controller
 
         return response([
             'newest' => $blogposts->shift(),
-            'blogposts' => $blogposts->groupBy(function($date) {
-                return Carbon::parse($date->published_at)->format('Y-m');
-            })
+            'blogposts' => $blogposts,
         ], 200);
     }
 

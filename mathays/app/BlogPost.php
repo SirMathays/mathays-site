@@ -13,6 +13,7 @@ class BlogPost extends Model
 
     protected $appends = [
         'published_at_tz',
+        'pub_year_month',
         'pub_year',
         'pub_month',        
     ];
@@ -39,7 +40,12 @@ class BlogPost extends Model
 
     public function getPubMonthAttribute()
     {
-        return $this->published_at ? $this->published_at->month : NULL;
+        return $this->published_at ? sprintf('%02d', $this->published_at->month) : NULL;
+    }
+
+    public function getPubYearMonthAttribute()
+    {
+        return implode('-', [$this->pub_year, $this->pub_month]);
     }
 
     public function scopeSlug($query, $slug)

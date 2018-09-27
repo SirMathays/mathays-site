@@ -29,7 +29,6 @@
         <nav>
             <router-link :to="{ name: 'videos' }">videos</router-link>
             <router-link :to="{ name: 'blog' }">blog</router-link>
-            @if(Auth::check())<a href="/admin">admin</a>@endif
         </nav>
     </header>
 
@@ -43,7 +42,7 @@
 
     <div class="container">
         <footer v-if="!loading">
-            website design by Matti Suoraniemi 2018 | <a class="text-muted" href="/admin">admin</a>
+            website design by Matti Suoraniemi 2018 @if(Auth::check())| <a class="text-muted" href="/admin">admin</a>@endif
         </footer>
     </div>
 @endsection

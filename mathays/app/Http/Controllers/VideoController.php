@@ -52,18 +52,23 @@ class VideoController extends Controller
         $video->yid = $request->input('video.yid');
         $video->description = $request->input('video.description');
 
-        if($request->publish) $video->publish();
-        else $video->save();
+        if($request->publish && !$video->published_at) {
+            $message = 'Video saved and published!';
+            $video->publish();
+        } else {
+            $message = 'Video saved!';
+            $video->save();
+        }
 
         return response([
-            'message' => 'Video saved!',
+            'message' => $message,
             'video' => $video,
         ], 200);
     }
 
     public function delete(Request $request)
     {
-        $video = Video::find()->find($request->id);
+        $video = Video::find($request->id);
         $video->delete();
 
         return response([

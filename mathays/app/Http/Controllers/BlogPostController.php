@@ -51,18 +51,23 @@ class BlogPostController extends Controller
         $post->slug = str_slug($request->input('post.title'));
         $post->body = $request->input('post.body');
 
-        if($request->publish) $post->publish();
-        else $post->save();
+        if($request->publish && !$post->published_at) {
+            $message = 'Post saved and published!';
+            $post->publish();
+        } else {
+            $message = 'Post saved!';
+            $post->save();
+        }
 
         return response([
-            'message' => 'Post saved!',
+            'message' => $message,
             'post' => $post,
         ], 200);
     }
 
     public function delete(Request $request)
     {
-        $post = BlogPost::find()->find($request->id);
+        $post = BlogPost::find($request->id);
         $post->delete();
 
         return response([
