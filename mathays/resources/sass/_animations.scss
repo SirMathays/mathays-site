@@ -65,6 +65,22 @@
 	transform: translateX(-10px);
 }
 
+// HORIZONTAL SLIDE ANIMATION
+.slide-ver-enter-active,
+.slide-ver-leave-active {
+    transition: .4s
+}
+
+.slide-ver-enter {
+	opacity: 0;
+	transform: translateY(-1em);
+}
+
+.slide-ver-leave-to {
+	opacity: 0;
+	transform: translateY(1em);
+}
+
 /* ANIMATION */
 .opacity-enter-active,
 .opacity-leave-active {

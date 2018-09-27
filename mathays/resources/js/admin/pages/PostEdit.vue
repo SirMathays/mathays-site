@@ -9,8 +9,8 @@
         </b-form-group>
 
         <b-form-group>
-            <b-btn v-if="!post.published_at" size="lg" variant="success" :disabled="saving" @click="save(true)">Publish</b-btn>
-            <b-btn size="lg" variant="outline-dark" :disabled="saving" @click="save(false)">{{ !post.published_at ? 'Save as Draft' : 'Save' }}</b-btn>
+            <b-btn v-if="!post.published_at_tz" size="lg" variant="success" :disabled="saving" @click="save(true)">Publish</b-btn>
+            <b-btn size="lg" variant="outline-dark" :disabled="saving" @click="save(false)">{{ !post.published_at_tz ? 'Save as Draft' : 'Save' }}</b-btn>
         </b-form-group>
     </b-container>
 </template>

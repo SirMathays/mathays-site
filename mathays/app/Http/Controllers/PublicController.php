@@ -9,6 +9,7 @@ use Mathays\Video;
 use Mathays\Person;
 
 use Carbon\Carbon;
+use Cookie;
 
 class PublicController extends Controller
 {

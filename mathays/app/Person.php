@@ -35,10 +35,23 @@ class Person extends Authenticatable
      */
     protected $appends = [
         'avatar',
+        'first_name',
+        'last_name',
     ];
 
     public function getAvatarAttribute()
     {
         return md5($this->email);
+    }
+
+    public function getFirstNameAttribute()
+    {
+        return explode(' ', $this->name)[0];
+    }
+
+    public function getLastNameAttribute()
+    {
+        $lastName = array_values(array_slice(explode(' ', $this->name), -1))[0];
+        return $lastName != $this->first_name ? $lastName : NULL;
     }
 }

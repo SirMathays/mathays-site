@@ -5,6 +5,7 @@ namespace Mathays\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Mathays\BlogPost;
+use Auth;
 
 class BlogPostController extends Controller
 {

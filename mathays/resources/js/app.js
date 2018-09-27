@@ -15,7 +15,10 @@ import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
 
 import VueMoment from 'vue-moment'
-Vue.use(VueMoment)
+import moment from 'moment-timezone'
+Vue.use(VueMoment, {
+    moment
+})
 
 import VuePaginate from 'vue-paginate'
 Vue.use(VuePaginate)
@@ -28,7 +31,11 @@ const app = new Vue({
     data() {
         return {
             loading: true,
+            tz: this.$moment.tz.guess()
         }
+    },
+    mounted() {
+        document.cookie = "mathays_tz=" + this.$moment.tz.guess();
     },
     watch: {
         $route(to, from) {

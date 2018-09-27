@@ -15,8 +15,9 @@
             <h4>Published</h4>
             <router-link class="post-row" v-for="post in published" :key="post.id" :to="{name: 'post-edit', params: {id: post.id}}">
                 <span class="post-row-title">{{ post.title }}</span>
-                <span class="post-row-date">{{ post.published_at | moment('calendar') }}</span>
+                <span class="post-row-date">{{ post.published_at_tz | moment('calendar') }}</span>
             </router-link>
+            <p v-if="published.length <= 0">No published posts. Go and publish some!</p>
         </b-card>
     </b-container>
 </template>
@@ -31,12 +32,12 @@ export default {
     computed: {
         drafts() {
             return this.posts.filter((post, key) => {
-                return post.published_at == null
+                return post.published_at_tz == null
             })
         },
         published() {
             return this.posts.filter((post, key) => {
-                return post.published_at != null
+                return post.published_at_tz != null
             })
         }
     },

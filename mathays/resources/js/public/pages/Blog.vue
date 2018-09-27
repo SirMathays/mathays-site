@@ -6,7 +6,7 @@
                 <div class="bottom-fade"></div>
                 <div class="card-body video-child">
                     <h4 class="card-title">{{ newest.title }}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ newest.published_at | moment('calendar') }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ newest.published_at_tz | moment('calendar') }}</h6>
                     <div v-html="newest.body"></div>
                 </div>
             </router-link>
@@ -19,7 +19,7 @@
                     <p class="post-group-title" :key="groupIndex">{{ [groupIndex, 'YYYY-MM'] | moment("MMM YYYY") }}</p>
                     <router-link :to="{name: 'post', params: {year: blogpost.pub_year, month: blogpost.pub_month, slug: blogpost.slug}}" class="post-row" v-for="blogpost in group" :key="blogpost.id">
                         <span class="post-row-title">{{ blogpost.title }}</span>
-                        <span class="post-row-date">{{ blogpost.published_at | moment("calendar") }}</span>
+                        <span class="post-row-date">{{ blogpost.published_at_tz | moment("calendar") }}</span>
                     </router-link>
                 </template>
                 <p v-if="Object.keys(blogposts).length <= 0">No posts... yet</p>

@@ -15,8 +15,9 @@
             <h4>Published</h4>
             <router-link class="post-row" v-for="video in published" :key="video.id" :to="{name: 'video-edit', params: {id: video.id}}">
                 <span class="post-row-title">{{ video.title }}</span>
-                <span class="post-row-date">{{ video.published_at | moment('calendar') }}</span>
+                <span class="post-row-date">{{ video.published_at_tz | moment('calendar') }}</span>
             </router-link>
+            <p v-if="published.length <= 0">No published videos. Go and publish some!</p>
         </b-card>
     </b-container>
 </template>
@@ -31,12 +32,12 @@ export default {
     computed: {
         unpublished() {
             return this.videos.filter((video, key) => {
-                return video.published_at == null
+                return video.published_at_tz == null
             })
         },
         published() {
             return this.videos.filter((video, key) => {
-                return video.published_at != null
+                return video.published_at_tz != null
             })
         }
     },

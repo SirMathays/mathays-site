@@ -3,9 +3,14 @@
 namespace Mathays\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Inspiring;
 
 use Mathays\BlogPost;
 use Mathays\Video;
+use Auth;
+use Artisan;
+
+use BingPhoto;
 
 class HomeController extends Controller
 {
@@ -27,6 +32,19 @@ class HomeController extends Controller
         return response([
             'blogpost' => $blogpost,
             'video' => $video,
+        ], 200);
+    }
+
+    public function getUser()
+    {
+        $bing = new BingPhoto([
+            'quality' => BingPhoto::QUALITY_LOW,
+        ]);
+
+        return response([
+            'user' => Auth::user(),
+            'bing' => $bing->getImage(),
+            'quote' => Inspiring::quote(),
         ], 200);
     }
 }

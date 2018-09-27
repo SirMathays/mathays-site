@@ -38,6 +38,8 @@ Route::group(['prefix' => 'v1/api'], function() {
     Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
         Route::get('get-dashboard-material', 'HomeController@dashboard');
 
+        Route::get('get-user', 'HomeController@getUser');
+
         // Admin blog routes
         Route::get('post-index', 'BlogPostController@index');
         Route::post('get-post', 'BlogPostController@edit');

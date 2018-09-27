@@ -3,3 +3,10 @@
 .alert {
     border-radius: 0;
 }
+
+.jumbotron {
+    &.dashboard {
+        background-size: cover;
+        background-position: center center;
+    }
+}

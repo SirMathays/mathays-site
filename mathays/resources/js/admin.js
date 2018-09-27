@@ -15,7 +15,10 @@ import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
 
 import VueMoment from 'vue-moment'
-Vue.use(VueMoment)
+import moment from 'moment-timezone'
+Vue.use(VueMoment, {
+    moment
+})
 
 import store from './store'
 import Toaster from './admin/components/Toaster'
@@ -26,7 +29,12 @@ const app = new Vue({
     data() {
         return {
             store,
-            loading: true
+            loading: true,
+            coreLoading: true,
+
+            user: [],
+            quote: '',
+            photo: undefined,
         }
     },
     watch: {
@@ -36,6 +44,25 @@ const app = new Vue({
     },
     computed: {
         // 
+    },
+    methods: {
+        getUser() {
+            var app = this
+
+            axios.get('/v1/api/admin/get-user')
+                .then(function (resp) {
+                    app.user = resp.data.user
+                    app.photo = resp.data.bing.url
+                    app.quote = resp.data.quote
+                    app.coreLoading = false
+                }).catch(function (resp) {
+                    app.store.setMessageAction(resp.response.data.message, 'danger')
+                    app.coreLoading = false
+                })
+        }
+    },
+    mounted() {
+        this.getUser()
     },
     components: {
         Toaster

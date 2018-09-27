@@ -21,7 +21,7 @@ export default {
             
             if(this.url) values.push("url('" + this.url + "')")
 
-            if(values.length > 0) return "background:" + values.join()
+            if(values.length > 0) return "background-image:" + values.join()
 
             return undefined
         }

@@ -3,6 +3,7 @@
 namespace Mathays;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class BlogPost extends Model
 {
@@ -11,9 +12,25 @@ class BlogPost extends Model
     ];
 
     protected $appends = [
+        'published_at_tz',
         'pub_year',
         'pub_month',        
     ];
+
+    public function getPublishedAtTzAttribute()
+    {
+        if(!$this->published_at) 
+            return null;
+
+        $tz = null;
+
+        if(Auth::check()) 
+            $tz = Auth::user()->timezone;
+        else if(isset($_COOKIE['mathays_tz'])) 
+            $tz = $_COOKIE['mathays_tz'];
+
+        return $this->published_at->tz($tz)->toDateTimeString();
+    }
 
     public function getPubYearAttribute()
     {

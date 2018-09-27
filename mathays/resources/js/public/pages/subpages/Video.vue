@@ -18,13 +18,14 @@
             <article class="mt-4 mb-4">
                 <div class="post-header">
                     <h1 class="h4">{{ video.title }}</h1>
-                    <h2 class="h6">{{ video.published_at | moment('calendar') }}</h2>
+                    <h2 class="h6">{{ video.published_at_tz | moment('calendar') }}</h2>
                 </div>
 
                 <div class="article-links mt-4 mb-3" v-if="video.blog_post">
                     <a href="#" :class="show == 'description' && 'active'" @click="e => toggleShow(e, 'description')">Description</a>
                     <a href="#" :class="show == 'story' && 'active'" @click="e => toggleShow(e, 'story')">Story</a>
                 </div>
+
                 <transition name="slide-hor" mode="out-in">
                     <div :key="1" v-if="show == 'description'" v-html="video.description || 'No description'"></div>
                     <div :key="2" v-else-if="show == 'story'">

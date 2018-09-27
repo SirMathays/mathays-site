@@ -5,6 +5,7 @@ namespace Mathays\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Mathays\Video;
+use Auth;
 
 class VideoController extends Controller
 {
