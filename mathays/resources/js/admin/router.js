@@ -1,10 +1,11 @@
-import Dashboard from './pages/Dashboard.vue'
-import BlogIndex from './pages/BlogIndex.vue'
-import PostEdit from './pages/PostEdit.vue'
-import VideoIndex from './pages/VideoIndex.vue'
-import VideoEdit from './pages/VideoEdit.vue'
+import Dashboard from './pages/Dashboard'
+import BlogIndex from './pages/BlogIndex'
+import PostEdit from './pages/PostEdit'
+import VideoIndex from './pages/VideoIndex'
+import VideoEdit from './pages/VideoEdit'
+import SettingEdit from './pages/SettingEdit'
 
-import Error404 from '../error/404.vue'
+import Error404 from '../error/404'
 
 var prefix = '/admin'
 
@@ -39,6 +40,11 @@ const routes = [
         path: prefix + '/videos/edit/:id?',
         name: 'video-edit',
         component: VideoEdit
+    },
+    {
+        path: prefix + '/settings',
+        name: 'settings',
+        component: SettingEdit
     },
     {
         path: prefix + '/404',

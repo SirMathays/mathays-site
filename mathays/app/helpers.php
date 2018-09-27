@@ -12,3 +12,8 @@ function asset_version($src) {
     return $src;
 
 }
+
+function setting($key)
+{
+    return array_get(app('settings'), $key);
+}

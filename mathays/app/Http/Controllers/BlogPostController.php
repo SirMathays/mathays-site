@@ -38,6 +38,7 @@ class BlogPostController extends Controller
             'post.id' => 'exists:blog_posts,id',
             'post.title' => 'required',
             'post.body' => 'required_if:publish,true',
+            'post.lang' => 'required|in:fi,en',
             'publish' => 'boolean',
         ]);
 
@@ -49,6 +50,7 @@ class BlogPostController extends Controller
         
         $post->title = $request->input('post.title');
         $post->slug = str_slug($request->input('post.title'));
+        $post->lang = $request->input('post.lang');
         $post->body = $request->input('post.body');
 
         if($request->publish && !$post->published_at) {

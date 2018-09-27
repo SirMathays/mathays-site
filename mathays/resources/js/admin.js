@@ -34,6 +34,7 @@ const app = new Vue({
 
             user: [],
             quote: '',
+            siteName: '',
             photo: undefined,
         }
     },
@@ -54,6 +55,7 @@ const app = new Vue({
                     app.user = resp.data.user
                     app.photo = resp.data.bing.url
                     app.quote = resp.data.quote
+                    app.siteName = resp.data.siteName
                     app.coreLoading = false
                 }).catch(function (resp) {
                     app.store.setMessageAction(resp.response.data.message, 'danger')

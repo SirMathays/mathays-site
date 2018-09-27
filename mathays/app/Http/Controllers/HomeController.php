@@ -38,11 +38,13 @@ class HomeController extends Controller
     public function getUser()
     {
         $bing = new BingPhoto([
+            'date' => BingPhoto::YESTERDAY,
             'quality' => BingPhoto::QUALITY_LOW,
         ]);
 
         return response([
             'user' => Auth::user(),
+            'siteName' => setting('name'),
             'bing' => $bing->getImage(),
             'quote' => Inspiring::quote(),
         ], 200);

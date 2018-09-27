@@ -159,6 +159,7 @@ return [
         // Mathays\Providers\BroadcastServiceProvider::class,
         Mathays\Providers\EventServiceProvider::class,
         Mathays\Providers\RouteServiceProvider::class,
+        Mathays\Providers\SettingServiceProvider::class,
 
     ],
 

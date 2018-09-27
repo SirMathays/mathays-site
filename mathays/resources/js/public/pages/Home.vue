@@ -13,7 +13,7 @@
         </v-container>
 
         <b-container class="my-5">
-            <h1 class="page-title">Mathays Productions</h1>
+            <h1 class="page-title">{{ name }}</h1>
             <h2 class="h3 page-description text-center">{{ story }}</h2>
         </b-container>
 
@@ -30,6 +30,7 @@ export default {
             video: undefined,
             blogpost: undefined,
             people: [],
+            name: undefined,
             story: undefined,
         }
     },
@@ -45,6 +46,7 @@ export default {
             .then(function (resp) {
                 app.video = resp.data.video
                 app.blogpost = resp.data.blogpost
+                app.name = resp.data.name
                 app.story = resp.data.story
                 app.people = resp.data.people
                 app.$root.loading = false

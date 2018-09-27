@@ -35,14 +35,13 @@ class PublicController extends Controller
                 'avatar' => $item->avatar,
             ];
         });
-        
-        $story = "Mathays Productions is a one-man-production which creates mainly videos and but also other media - games, short stories, websites and so on.";
 
         return response([
             'blogpost' => $blogpost,
             'video' => $video,
             'people' => $people,
-            'story' => $story,
+            'name' => setting('name'),
+            'story' => setting('story'),
         ], 200);
     }
 

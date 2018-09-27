@@ -1,18 +1,19 @@
 <template>
     <b-container v-if="!$root.loading">
-        <b-form-group>
-            <b-input-group>
-                <b-input size="lg" placeholder="Title" v-model="post.title" />
-                <b-dropdown :text="post.lang" slot="append" v-model="post.lang">
-                    <b-dropdown-item href="#" @click.prevent="post.lang = 'fi'">🇫🇮</b-dropdown-item>
-                    <b-dropdown-item href="#" @click.prevent="post.lang = 'en'">🇬🇧</b-dropdown-item>
-                </b-dropdown>
-            </b-input-group>
-        </b-form-group>
-    
-        <b-form-group>
-            <vue-editor :editorToolbar="customToolbar" placeholder="Become the storyteller..." v-model="post.body"></vue-editor>
-        </b-form-group>
+        <div class="post-edit-wrapper">
+            <b-form-group>
+                <div class="edit-title">
+                    <b-input size="lg" placeholder="Title" v-model="post.title" />
+                </div>
+                
+                <div class="btn-container">
+                    <b-btn size="sm" variant="outline-dark" @click="post.lang = 'fi'" :class="{active: post.lang == 'fi'}">Written in Finnish</b-btn>
+                    <b-btn size="sm" variant="outline-dark" @click="post.lang = 'en'" :class="{active: post.lang == 'en'}">Written in English</b-btn>
+                </div>
+
+                <vue-editor :editorOptions="editorOptions" :editorToolbar="customToolbar" placeholder="Become the storyteller..." v-model="post.body"></vue-editor>
+            </b-form-group>
+        </div>
 
         <b-form-group>
             <b-btn v-if="!post.published_at" size="lg" variant="success" :disabled="saving" @click="save(true)">Publish</b-btn>
@@ -38,6 +39,7 @@ export default {
                 published_at: undefined,
             },
             errors: [],
+            editorOptions: { theme: 'bubble' },
             customToolbar: [
                 [{'header': [1, 2, 3, 4, 5, 6, false]}],
                 ['bold', 'italic', 'underline'],

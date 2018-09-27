@@ -10,7 +10,7 @@
         </b-form-group>
     
         <b-form-group>
-            <vue-editor :editorToolbar="customToolbar" placeholder="Description" v-model="video.description"></vue-editor>
+            <vue-editor :editorOptions="editorOptions" :editorToolbar="customToolbar" placeholder="Description" v-model="video.description"></vue-editor>
         </b-form-group>
 
         <b-form-group>
@@ -36,6 +36,7 @@ export default {
                 description: undefined,
                 published_at: undefined,
             },
+            editorOptions: { theme: 'bubble' },
             customToolbar: [
                 ['bold', 'italic', 'underline'],
                 [{ 'list': 'ordered'}, { 'list': 'bullet' }],

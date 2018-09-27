@@ -1,3 +1,5 @@
+@import "~quill/dist/quill.bubble";
+
 .jumbotron,
 .form-control,
 .alert {
@@ -6,14 +8,55 @@
 
 .jumbotron {
     &.dashboard {
+        margin-top: -3rem;
         background-size: cover;
         background-position: center center;
+    }
+}
+
+.post-edit-wrapper {
+    background-color: #fff;
+
+    .btn-container {
+        padding: .6em 1em 0 1em;
+        position: relative;
+        z-index: 19;
+
+        .btn {
+            border-radius: 50px !important;
+            margin-right: 8px !important;
+        }
+    }
+}
+
+.edit-title {
+    padding-top: 1.25em;
+    padding-right: 1em;
+
+    .form-control {
+        border: 0;
+        font-size: 2em;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        &:focus {
+            border-color: unset;
+            box-shadow: unset;
+        }
     }
 }
 
 .ql-editor {
     background-color: #fff;
     font-family: "Nunito", sans-serif;
+    padding-left: 1em;
+    min-height: 400px !important;
+
+    &.ql-blank:before {
+        font-style: unset !important;
+        font-family: "Nunito", sans-serif;
+        line-height: 1.9em;
+    }
 
     p {
         line-height: 1.9em;

@@ -5,7 +5,7 @@
     
     <b-navbar toggleable="md" type="dark" variant="dark" class="mb-5" v-cloak>
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <b-navbar-brand href="/">Mathays Productions</b-navbar-brand>
+        <b-navbar-brand href="/" v-html="siteName"></b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav>
@@ -13,7 +13,7 @@
                 <b-nav-item :to="{ name: 'videos' }">Videos</b-nav-item>
                 <b-nav-item :to="{ name: 'blog' }">Blog</b-nav-item>
                 <b-nav-item href="#" disabled>Logbook</b-nav-item>
-                <b-nav-item href="#" disabled>Settings</b-nav-item>
+                <b-nav-item :to="{ name: 'settings' }">Settings</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->

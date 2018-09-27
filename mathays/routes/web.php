@@ -51,6 +51,10 @@ Route::group(['prefix' => 'v1/api'], function() {
         Route::post('get-video', 'VideoController@edit');
         Route::post('save-video', 'VideoController@save');
         Route::post('delete-video', 'VideoController@delete');
+
+        // Admin setting routes
+        Route::get('setting-index', 'SettingController@index');        
+        Route::post('store-settings', 'SettingController@store');
     });
 });
 
