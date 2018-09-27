@@ -1,8 +1,8 @@
 <template>
     <div class="component" v-if="!$root.loading">
-        <b-container>
+        <b-container v-if="newest">
             <h2 class="mt-4">newest post</h2>
-            <router-link :to="{ name: 'post', params: {year: newest.pub_year, month: newest.pub_month, slug: newest.slug}}" v-if="newest" class="card video-card mb-5">
+            <router-link :to="{ name: 'post', params: {year: newest.pub_year, month: newest.pub_month, slug: newest.slug}}" class="card video-card mb-5">
                 <div class="bottom-fade"></div>
                 <div class="card-body video-child">
                     <h4 class="card-title">{{ newest.title }}</h4>
@@ -12,9 +12,9 @@
             </router-link>
         </b-container>
         
-        <b-container>
+        <b-container class="my-4">
             <h2>previous posts</h2>
-            <b-card class="post-list mb-4">
+            <b-card class="post-list">
                 <template v-for="(group, groupIndex) in blogposts">
                     <p class="post-group-title" :key="groupIndex">{{ [groupIndex, 'YYYY-MM'] | moment("MMM YYYY") }}</p>
                     <router-link :to="{name: 'post', params: {year: blogpost.pub_year, month: blogpost.pub_month, slug: blogpost.slug}}" class="post-row" v-for="blogpost in group" :key="blogpost.id">
@@ -22,6 +22,7 @@
                         <span class="post-row-date">{{ blogpost.published_at | moment("calendar") }}</span>
                     </router-link>
                 </template>
+                <p v-if="Object.keys(blogposts).length <= 0">No posts... yet</p>
             </b-card>
         </b-container>
     </div>
@@ -31,7 +32,7 @@
 export default {
     data() {
         return {
-            blogposts: [],
+            blogposts: {},
             newest: undefined
         }
     },

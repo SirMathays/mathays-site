@@ -5,7 +5,7 @@
                 <img class="video-child" :src="thumbnail(video)" :alt="video.title">
                 <div class="overlay-text">
                     <div class="text-container text-center">
-                        <h2>NEW VIDEO</h2>
+                        <h2>NEWEST VIDEO</h2>
                         <h4>{{ video.title }}</h4>
                     </div>
                 </div>
