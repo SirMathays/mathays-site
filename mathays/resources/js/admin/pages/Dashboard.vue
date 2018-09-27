@@ -16,7 +16,7 @@
 
         <b-container>
             <b-btn :to="{ name: 'video-edit' }" size="lg" variant="primary" block class="my-4">Publish a video</b-btn>
-            <b-btn :to="{ name: 'post-edit' }" size="lg" variant="outline-dark" block class="my-4">Write a blog post</b-btn>
+            <b-btn :to="{ name: 'post-edit' }" size="lg" variant="outline-secondary" block class="my-4">Write a blog post</b-btn>
         </b-container>
     </div>
 </template>

@@ -19,10 +19,23 @@ $sm: $breakpoint-sm;
 $md: $breakpoint-md;
 $lg: $breakpoint-lg;
 
+// Grays
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
 // Colors
 $blue: #3490dc;
 $indigo: #6574cd;
-$purple: #9561e2;
+$purple: #673ab7;
 $pink: #f66D9b;
 $red: #e3342f;
 $orange: #f6993f;
@@ -30,3 +43,12 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+$primary:       $blue !default;
+$secondary:     $dark !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;

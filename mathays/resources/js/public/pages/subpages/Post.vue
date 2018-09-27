@@ -1,10 +1,12 @@
 <template>
     <div class="component" v-if="!$root.loading">
+        <div class="post-banner" v-if="banner" :style="banner"></div>
+
         <b-container>
             <article class="mt-5 mb-4" v-if="post">
                 <div class="post-header">
                     <h1 class="h4">{{ post.title }}</h1>
-                    <h2 class="h6">{{ post.created_at | moment('calendar') }}</h2>
+                    <h2 class="h6">{{ post.published_at_tz | moment('calendar') }}</h2>
                 </div>
                 <div class="mt-3" v-html="post.body"></div>
             </article> 
@@ -17,6 +19,11 @@ export default {
     data() {
         return {
             post: [],
+        }
+    },
+    computed: {
+        banner() {
+            return this.post.image ? "background-image: url('" + this.post.image + "')" : undefined
         }
     },
     methods: {

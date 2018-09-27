@@ -12,8 +12,10 @@
                 <b-nav-item :to="{ name: 'dashboard' }">Dashboard</b-nav-item>
                 <b-nav-item :to="{ name: 'videos' }">Videos</b-nav-item>
                 <b-nav-item :to="{ name: 'blog' }">Blog</b-nav-item>
-                <b-nav-item href="#" disabled>Logbook</b-nav-item>
                 <b-nav-item :to="{ name: 'settings' }">Settings</b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav id="personal">
+                <b-nav-item href="#" disabled>Personal</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->

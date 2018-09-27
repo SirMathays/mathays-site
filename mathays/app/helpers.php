@@ -13,7 +13,7 @@ function asset_version($src) {
 
 }
 
-function setting($key)
+function setting($key, $fallback = null)
 {
-    return array_get(app('settings'), $key);
+    return array_get(app('settings'), $key) ?? $fallback;
 }

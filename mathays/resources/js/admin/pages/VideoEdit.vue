@@ -15,7 +15,7 @@
 
         <b-form-group>
             <b-btn v-if="!video.published_at_tz" size="lg" variant="success" :disabled="saving" @click="save(true)">Publish</b-btn>
-            <b-btn size="lg" variant="outline-dark" :disabled="saving" @click="save(false)">{{ !video.published_at_tz ? 'Save as Draft' : 'Save' }}</b-btn>
+            <b-btn size="lg" variant="outline-secondary" :disabled="saving" @click="save(false)">{{ !video.published_at_tz ? 'Save as Draft' : 'Save' }}</b-btn>
             <b-btn v-if="video.published_at" class="ml-auto" size="lg" variant="danger" :disabled="saving" @click="deleteVideo">Delete</b-btn>
         </b-form-group>
     </b-container>

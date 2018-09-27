@@ -18,7 +18,7 @@
         </b-container>
 
         <b-container class="text-center">
-            <b-btn :to="{ name: 'blog' }" size="lg" variant="outline-dark" block class="my-0">Read my blog</b-btn>
+            <b-btn :to="{ name: 'blog' }" size="lg" variant="outline-secondary" block class="my-0">Read my blog</b-btn>
         </b-container>
     </div>
 </template>

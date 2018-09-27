@@ -7,8 +7,8 @@
                 </div>
                 
                 <div class="btn-container">
-                    <b-btn size="sm" variant="outline-dark" @click="post.lang = 'fi'" :class="{active: post.lang == 'fi'}">Written in Finnish</b-btn>
-                    <b-btn size="sm" variant="outline-dark" @click="post.lang = 'en'" :class="{active: post.lang == 'en'}">Written in English</b-btn>
+                    <b-btn size="sm" variant="outline-secondary" @click="post.lang = 'fi'" :class="{active: post.lang == 'fi'}">Written in Finnish</b-btn>
+                    <b-btn size="sm" variant="outline-secondary" @click="post.lang = 'en'" :class="{active: post.lang == 'en'}">Written in English</b-btn>
                 </div>
 
                 <vue-editor :editorOptions="editorOptions" :editorToolbar="customToolbar" placeholder="Become the storyteller..." v-model="post.body"></vue-editor>
@@ -17,7 +17,7 @@
 
         <b-form-group>
             <b-btn v-if="!post.published_at" size="lg" variant="success" :disabled="saving" @click="save(true)">Publish</b-btn>
-            <b-btn size="lg" variant="outline-dark" :disabled="saving" @click="save(false)">{{ !post.published_at ? 'Save as Draft' : 'Save' }}</b-btn>
+            <b-btn size="lg" variant="outline-secondary" :disabled="saving" @click="save(false)">{{ !post.published_at ? 'Save as Draft' : 'Save' }}</b-btn>
             <b-btn v-if="post.published_at" class="ml-auto" size="lg" variant="danger" :disabled="saving" @click="deletePost">Delete</b-btn>
         </b-form-group>
     </b-container>

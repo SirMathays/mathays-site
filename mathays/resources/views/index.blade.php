@@ -4,24 +4,20 @@
     <header v-cloak>
         <div class="logo-container">
             <router-link :to="{ name: 'home' }">
-                <svg width="70px" height="101px" id="logo">
+                <svg width="76px" height="113px" viewBox="0 0 76 113">
                     <defs>
-                        <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(45)">
-                            <stop offset="0%" stop-color="#3490dc"/>
-                            <stop offset="100%" stop-color="#673ab7"/>
+                        <linearGradient x1="0%" y1="0%" x2="100%" y2="56.0824199%" id="linearGradient-1">
+                            <stop stop-color="#3490DC" offset="0%"></stop>
+                            <stop stop-color="#673AB7" offset="100%"></stop>
                         </linearGradient>
-
-                        {{-- <linearGradient id="fill" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(45)">
-                            <stop offset="0%" stop-color="#673ab7"/>
-                            <stop offset="100%" stop-color="#3490dc"/>
-                        </linearGradient> --}}
                     </defs>
+                    
                     <polygon 
-                        transform="translate(3, 3)"
-                        stroke-width="6"
-                        stroke="url(#stroke)"
+                        stroke="url(#linearGradient-1)" 
                         fill="transparent"
-                        points="0 95 0 5 32 50 64 5 64 95"/>
+                        stroke-width="6" 
+                        fill-rule="nonzero" 
+                        points="3 110 3 10 38 60 73 10 73 110"></polygon>
                 </svg>
             </router-link>
         </div>

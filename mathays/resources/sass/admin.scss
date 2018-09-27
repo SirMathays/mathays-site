@@ -1,5 +1,7 @@
 @import "~quill/dist/quill.bubble";
 
+@import 'variables';
+
 .jumbotron,
 .form-control,
 .alert {
@@ -11,6 +13,15 @@
         margin-top: -3rem;
         background-size: cover;
         background-position: center center;
+    }
+}
+
+.navbar-nav#personal {
+    border-top: 1px $gray-900 solid;
+
+    @media screen and (min-width: 768px) {
+        border-left: 1px $gray-900 solid;
+        border-top: 0px $gray-900 solid;
     }
 }
 
@@ -38,6 +49,8 @@
         font-size: 2em;
         padding-top: 0;
         padding-bottom: 0;
+        font-family: "Josefin Sans", sans-serif;
+        font-weight: 300;
 
         &:focus {
             border-color: unset;
@@ -60,5 +73,6 @@
 
     p {
         line-height: 1.9em;
+        margin-bottom: 1em !important;
     }
 }

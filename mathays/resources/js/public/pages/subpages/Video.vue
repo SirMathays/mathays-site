@@ -1,7 +1,7 @@
 <template>
     <div class="component" v-if="!$root.loading">
         <v-container class="py-3 mb-4" :class="{darken: darken}" bg="black" :no-stripe="true">
-            <b-card class="video-card bg-dark" no-body>
+            <b-card class="video-card bg-secondary" no-body>
                 <youtube 
                     :video-id="video.yid"
                     player-width="100%"

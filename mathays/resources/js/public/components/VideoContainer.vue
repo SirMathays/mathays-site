@@ -17,13 +17,13 @@ export default {
         background() {
             var values = []
  
-            if(!this.noStripe) values.push("repeating-linear-gradient(-45deg, black 0px, black 2px, rgba(0,0,0,0.5) 2px, rgba(0,0,0,0.5) 4px)")
+            if(!this.noStripe) values.push("repeating-linear-gradient(-45deg, black 0px, black 4px, rgba(0,0,0,0.2) 4px, rgba(0,0,0,0.2) 8px)")
+
+            values.push("linear-gradient(to left, rgba(0,0,0,.6), transparent, rgba(0,0,0,.6))")
             
             if(this.url) values.push("url('" + this.url + "')")
 
-            if(values.length > 0) return "background-image:" + values.join()
-
-            return undefined
+            return "background-image:" + values.join()
         }
     },
     props: {
