@@ -16,6 +16,19 @@
     }
 }
 
+.navbar {
+    font-family: $font-family-headers;
+
+    .nav-item {
+        font-weight: 300;
+        letter-spacing: 1.5px;
+
+        .nav-link.active {
+            text-decoration: underline;
+        }
+    }
+}
+
 .navbar-nav#personal {
     border-top: 1px $gray-900 solid;
 

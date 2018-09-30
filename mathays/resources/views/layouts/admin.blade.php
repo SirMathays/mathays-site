@@ -21,6 +21,11 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
+    @if(env('APP_ENV') != 'production')
+        <div class="progress-bar progress-bar-striped bg-warning" style="height: 2em">
+            <b>Development environment</b>
+        </div>
+    @endif
     <div id="admin">
         <main class="pb-4">
             @yield('content')

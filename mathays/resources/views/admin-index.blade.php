@@ -3,7 +3,7 @@
 @section('content')
     <toaster :store="store"></toaster>
     
-    <b-navbar toggleable="md" type="dark" variant="dark" class="mb-5" v-cloak>
+    <b-navbar toggleable="md" type="light" variant="light" class="mb-5" v-cloak>
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand href="/" v-html="siteName"></b-navbar-brand>
 
