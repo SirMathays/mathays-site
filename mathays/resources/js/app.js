@@ -25,11 +25,15 @@ Vue.use(VuePaginate)
 
 Vue.component('v-container', require('./public/components/VideoContainer.vue'))
 
+import store from './store'
+import Toaster from './components/Toaster'
+
 const app = new Vue({
     el: '#app',
     router: new VueRouter(router),
     data() {
         return {
+            store,
             loading: true,
             tz: this.$moment.tz.guess()
         }
@@ -46,5 +50,8 @@ const app = new Vue({
         homeActive() {
             return this.$route.name == 'home'
         }
+    },
+    components: {
+        Toaster
     }
 })

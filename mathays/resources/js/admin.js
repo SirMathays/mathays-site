@@ -21,7 +21,7 @@ Vue.use(VueMoment, {
 })
 
 import store from './store'
-import Toaster from './admin/components/Toaster'
+import Toaster from './components/Toaster'
 
 const app = new Vue({
     el: '#admin',

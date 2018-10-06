@@ -15,7 +15,7 @@
                 <b-nav-item :to="{ name: 'settings' }">Settings</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav id="personal">
-                <b-nav-item href="#" disabled>Personal</b-nav-item>
+                <b-nav-item :to="{ name: 'personal' }">Personal</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -34,7 +34,7 @@
     </transition>
 
     <b-container>
-        <footer v-if="!loading">
+        <footer class="site-footer" v-if="!loading">
             website design by Matti Suoraniemi 2018
         </footer>
     </b-container>

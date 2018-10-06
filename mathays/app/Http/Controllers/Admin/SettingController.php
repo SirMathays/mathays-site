@@ -1,6 +1,7 @@
 <?php
 
-namespace Mathays\Http\Controllers;
+namespace Mathays\Http\Controllers\Admin;
+use Mathays\Http\Controllers\Controller;
 
 use Mathays\Setting;
 use Illuminate\Http\Request;

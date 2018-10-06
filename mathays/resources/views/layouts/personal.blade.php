@@ -25,10 +25,10 @@
     <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     
-    <title>{{ config('app.name', 'Laravel') }} - Admin</title>
+    <title>{{ config('app.name', 'Laravel') }} - Personal</title>
 
     <!-- Scripts -->
-    @if(empty($excludeVue)) <script src="{{ asset('js/admin.js') }}" defer></script> @endif
+    <script src="{{ asset('js/personal.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -36,18 +36,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/personal.css') }}" rel="stylesheet">
+
+    <style>
+        body, .wrapper-blur {
+            background-image: url('{{ $bing['url'] }}');
+        }
+    </style>
 </head>
 <body>
     @if(env('APP_ENV') != 'production')
-        <div class="progress-bar progress-bar-striped bg-warning" style="height: 2em">
+        <div class="progress-bar progress-bar-striped bg-warning" id="development-bar">
             <b>Development environment</b>
         </div>
     @endif
-    <div id="admin">
-        <main class="pb-4">
-            @yield('content')
-        </main>
+    
+    <div id="personal">
+        @yield('content')
     </div>
 </body>
 </html>

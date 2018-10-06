@@ -50,7 +50,7 @@ export default {
                 app.videos = resp.data.videos
                 app.$root.loading = false
             }).catch(function (resp) {
-                alert("Could not load rows")
+                app.$root.store.setMessageAction("Could not load rows", 'danger')
                 app.$root.loading = false
             })
         }

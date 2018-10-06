@@ -95,7 +95,7 @@ export default {
                 app.newest = resp.data.newest
                 app.$root.loading = false
             }).catch(function (resp) {
-                alert("Could not load rows")
+                app.$root.store.setMessageAction("Could not load rows", 'danger')
                 app.$root.loading = false
             })
         }

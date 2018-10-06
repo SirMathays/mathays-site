@@ -1,5 +1,3 @@
-var timeout;
-
 export default {
     debug: process.env.NODE_ENV == 'development' ? true : false,
     state: {

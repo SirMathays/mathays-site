@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Messerli90\IGDB\IGDBServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -211,7 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'BingPhoto' => grubersjoe\BingPhoto::class,
-
+        'IGDB' => \Messerli90\IGDB\Facades\IGDB::class,
     ],
 
 ];

@@ -1,0 +1,309 @@
+@import 'variables';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+#development-bar {
+    height: 2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    @media screen and (max-width: $sm) {
+        position: unset;
+    }
+}
+
+html, body {
+    height: 100vh;
+
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+#personal {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: $sm) {
+        height: unset;
+        align-items: unset;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 550px;
+    transition: .4s;
+}
+
+.wrapper-blur {
+    position: absolute;
+    z-index: -99;
+    filter: blur(6px);
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+}
+
+.btn-round {
+    border-radius: 5em;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+header.personal {
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0,0,0,0.6);
+    display: inline-block;
+    padding: calc(2.5em + 25px) 1em 2.5em 1em;
+
+    .header-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        color: rgba(255,255,255,.2);
+        text-align: left;
+        padding: 5px;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        display: flex;
+
+        > div {
+            width: 100%;
+            flex-grow: 0;
+            display: flex;
+        }
+
+        a {
+            color: rgba(255,255,255,.2);
+            text-decoration: none;
+
+            &:hover {
+                color: #fff;
+            }
+
+            &.link {
+                padding: 1px 5px;
+                background: rgba(0,0,0,0.2);
+
+                + .link {
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+
+    h1 {
+        font-weight: 400;
+        font-size: 2.6em;
+        margin: 0 0 .3em 0;
+    }
+    
+    h2 {
+        font-weight: 400;
+        font-size: 1.7em;
+        margin: .4em 0 1em;
+    }
+
+    nav > .links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1em;
+        flex-wrap: wrap;
+        position: relative;
+
+        min-height: 45px;
+
+        a.link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            border: 2px rgba(0,0,0,0) solid;
+            padding: 0 1em;
+            border-color: rgba(255,255,255,0.0);
+            transition: .4s;
+
+            margin-top: 3px;
+            height: 42px;
+
+            &:hover {
+                border-color:rgba(255,255,255,0.5);
+            }
+            + a.link {
+                margin-left: 4px;
+            }
+            & > img + span {
+                margin-left: .3em;
+            }
+
+            &.dark {
+                background-color:rgba(0,0,0,0.5);
+            }
+            &.light {
+                background-color:rgba(255,255,255,0.2);
+            }
+            &.info {
+                background-color:rgba(0,138,255,0.3);
+            }
+            &.success {
+                background-color:rgba(56,130,90,0.3);
+            }
+            &.danger {
+                background-color:rgba(191,1,33,0.3);
+            }
+
+            @for $i from 1 through 12 {
+                &.slide-ver-enter-active:nth-child(#{$i}) {
+                    transition-delay: $i * (.05s);
+                }
+            }
+        }
+
+        @media screen and (max-width: $sm) {
+            flex-direction: column;
+
+            a.link {
+                width: 100%;
+
+                + a.link {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.content {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-bottom: 1.5em;
+
+    section {
+        color: #000;
+        width: 100%;
+        font-size: 0.8em;
+        margin: 1em 0;
+        background-color: #fff;
+        transition: .4s;
+        text-align: left;
+        overflow: hidden;
+        box-shadow: 0 3px 2px 0 rgba(0,0,0,0.4);
+
+        h1,h2,h3,h4,h5,h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+        }
+    }
+}
+
+section.feed {
+    padding: 0 1.5em;
+
+    .feed-title {
+        display: flex;
+        align-items: center;
+        padding: 1.1em 1.5em;
+        color: #fff;
+        box-shadow: 0 0 5px 0px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        margin: 0 -1.5em;
+
+        h1 {    
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .edit {
+            margin-left: auto;
+            color: #fff;
+        }
+    }
+
+    .feed-group {
+        display: flex;
+        margin-top: -1em;
+
+        .feed-row {
+            flex-grow: 0;
+        }
+    }
+
+    .feed-row {
+        margin: 1.5em 0;
+        width: 100%;
+        box-sizing: border-box;
+        animation: 1s ease-in-out both fadeIn;
+
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+
+                // Delay the animation. Delay increases as items loop.
+                animation-delay: $i * (.05s);
+            }
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin: 0 0 10px 0;
+
+            a {
+                transition: .4s;
+                text-decoration: none;
+                color: #000;
+
+                &:hover {
+                    color: inherit;
+                }
+            }
+        }
+
+        p {
+            margin-bottom: 1em;
+            line-height: normal;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .row-info {
+            margin-top: .5em;
+            border-left: 1px #000 solid;
+            padding-left: 3px;
+
+            h5 {
+                margin: 0;
+                text-transform: uppercase;
+                font-size: 0.8em;
+
+                +h5 {
+                    color: #000;
+                    margin-top: 0;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
+
+.modal-content {
+    border-radius: 0;
+    border: 0;
+}

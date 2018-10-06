@@ -1,7 +1,9 @@
 @extends('layouts.public')
 
 @section('content')
-    <header v-cloak>
+    <toaster :store="store"></toaster>
+    
+    <header class="public" v-cloak>
         <div class="logo-container">
             <router-link :to="{ name: 'home' }">
                 <svg width="76px" height="113px" viewBox="0 0 76 113">
@@ -33,11 +35,11 @@
     </div>
 
     <transition name="primary-fade" mode="out-in">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
     </transition>
 
     <div class="container">
-        <footer v-if="!loading">
+        <footer class="site-footer" v-if="!loading">
             website design by Matti Suoraniemi 2018 @if(Auth::check())| <a class="text-muted" href="/admin">admin</a>@endif
         </footer>
     </div>

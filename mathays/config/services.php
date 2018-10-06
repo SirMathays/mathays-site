@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'igdb' => [
+        'key' => env('IGDB_KEY'),
+        'url' => env('IGDB_URL')
+    ],
+
 ];

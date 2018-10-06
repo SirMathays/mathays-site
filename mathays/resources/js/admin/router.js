@@ -4,6 +4,7 @@ import PostEdit from './pages/PostEdit'
 import VideoIndex from './pages/VideoIndex'
 import VideoEdit from './pages/VideoEdit'
 import SettingEdit from './pages/SettingEdit'
+import PersonalEdit from './pages/PersonalEdit'
 
 import Error404 from '../error/404'
 
@@ -45,6 +46,11 @@ const routes = [
         path: prefix + '/settings',
         name: 'settings',
         component: SettingEdit
+    },
+    {
+        path: prefix + '/personal/:slug?',
+        name: 'personal',
+        component: PersonalEdit
     },
     {
         path: prefix + '/404',

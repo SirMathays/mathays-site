@@ -2,12 +2,6 @@
 
 @import 'variables';
 
-.jumbotron,
-.form-control,
-.alert {
-    border-radius: 0;
-}
-
 .jumbotron {
     &.dashboard {
         margin-top: -3rem;
@@ -17,24 +11,23 @@
 }
 
 .navbar {
-    font-family: $font-family-headers;
-
-    .nav-item {
-        font-weight: 300;
-        letter-spacing: 1.5px;
-
-        .nav-link.active {
-            text-decoration: underline;
-        }
+    .navbar-brand {
+        font-family: $font-family-headers;
     }
 }
 
 .navbar-nav#personal {
-    border-top: 1px $gray-900 solid;
-
-    @media screen and (min-width: 768px) {
-        border-left: 1px $gray-900 solid;
-        border-top: 0px $gray-900 solid;
+    border-left: 1px $gray-300 solid;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 5px;
+    
+    @media screen and (max-width: $sm) {
+        &, +.navbar-nav {
+            border-left-width: 0px;
+            border-top: 1px $gray-300 solid;
+            padding: 5px 0 0 0;
+            margin: 5px 0 0 0;
+        }
     }
 }
 
@@ -87,5 +80,77 @@
     p {
         line-height: 1.9em;
         margin-bottom: 1em !important;
+    }
+}
+
+.nav-tabs {
+    border-bottom: unset;
+ 
+    .nav-item {
+        margin-bottom: unset;
+    }
+
+    .nav-link {
+        border: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .nav-link.active, .nav-item.show .nav-link {
+        background-color: $white;
+    }
+
+    .nav-link:not(.active):hover, .nav-link:not(.active):focus {
+        background-color: rgba(255,255,255,.4);
+    }
+}
+
+.list-group-item {
+    &:first-child {
+        border-radius: 0;
+    }
+
+    &:last-child {
+        border-radius: 0;
+    }
+}
+
+.draggable-list {
+    position: relative;
+    min-height: 49px;
+
+    &:before {
+        content: attr(data-title);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px $gray-300 dashed;
+        color: $gray-300;
+        font-size: .9em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.trash {
+        min-height: unset;
+        height: 32px;
+
+        &:before {
+            border: 1px $danger dashed;
+            color: $danger;
+        }
+
+        .sortable-ghost {
+            height: inherit;
+            padding: 3.5px 0;
+            background-color: $gray-100;
+            color: $gray-300;
+            border-style: dashed;
+            animation: flashingBorder .6s ease-in-out 0s infinite alternate;
+        }
     }
 }

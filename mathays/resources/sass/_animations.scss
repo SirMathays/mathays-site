@@ -65,10 +65,10 @@
 	transform: translateX(-10px);
 }
 
-// HORIZONTAL SLIDE ANIMATION
+// VERTICAL SLIDE ANIMATION
 .slide-ver-enter-active,
 .slide-ver-leave-active {
-    transition: .4s
+	transition: .4s;
 }
 
 .slide-ver-enter {
@@ -113,4 +113,57 @@
 
 .toaster-list-move {
   transition: transform .5s;
+}
+
+/** 
+ * PERSONAL ANIMATIONS
+ */
+
+
+// CALM VERTICAL SLIDE ANIMATION
+.calm-slide-ver-enter-active,
+.calm-slide-ver-leave-active {
+    transition: .6s
+}
+
+.calm-slide-ver-enter, .calm-slide-ver-leave-to {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+
+// BLUR LEFT ANIMATION
+.blur-left-enter-active,
+.blur-left-leave-active {
+    transition: .1s
+}
+
+.blur-left-enter, .blur-left-leave-to {
+	filter: blur(2px);
+	transform: translateX(2px);
+}
+
+// BLUR RIGHT ANIMATION
+.blur-right-enter-active,
+.blur-right-leave-active {
+    transition: .1s
+}
+
+.blur-right-enter, .blur-right-leave-to {
+	filter: blur(2px);
+	transform: translateX(-2px);
+}
+
+// slide down animation
+@keyframes fadeIn {
+    0% {
+		opacity: 0;
+    }
+    100% {
+		opacity: 1;
+    }
+}
+
+@keyframes flashingBorder {
+  	0% { border-color: lighten($red, 20); }
+    100% { border-color: lighten($red, 40); }
 }

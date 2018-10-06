@@ -21,11 +21,6 @@ export default {
             type: Object,
             required: true
         }
-    },
-    methods: {
-        storeOffer() {
-            alert('lol')
-        }
     }
 }
 </script>

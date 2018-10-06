@@ -12,7 +12,7 @@ use Artisan;
 
 use BingPhoto;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Show the application dashboard.
@@ -38,8 +38,7 @@ class HomeController extends Controller
     public function getUser()
     {
         $bing = new BingPhoto([
-            'date' => BingPhoto::YESTERDAY,
-            'quality' => BingPhoto::QUALITY_LOW,
+            'quality' => BingPhoto::QUALITY_HIGH,
         ]);
 
         return response([
