@@ -1,19 +1,16 @@
 <template>
     <div v-if="!loading">
-        <draggable v-model="$root.modeData.feeds" @start="hideContent = true" @end="hideContent = false">
-            <feed v-for="feed in $root.modeData.feeds" :key="feed.id" :feed="feed" :hide-content="hideContent"></feed>
-        </draggable>
+        <feed v-for="feed in $root.modeData.feeds" :key="feed.id" :feed="feed"></feed>
     </div>
 </template>
 
 <script>
 import Feed from '../components/Feed'
-import draggable from 'vuedraggable'
+
 export default {
     data() {
         return {
-            loading: true,
-            hideContent: false,
+            loading: true
         }
     },
     methods: {
@@ -51,8 +48,7 @@ export default {
         this.getFeeds()
     },
     components: {
-        Feed,
-        draggable
+        Feed
     }
 }
 </script>

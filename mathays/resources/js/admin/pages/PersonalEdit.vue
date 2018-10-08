@@ -3,7 +3,7 @@
         <div class="my-4">
             <b-nav tabs>
                 <b-nav-item v-for="(mode, slug) in modes" :key="slug" :to="{ name: 'personal', params: {slug: mode.slug}}">{{ mode.name }}</b-nav-item>
-                <b-nav-item href="/personal" class="tab-dark ml-auto">Personal ></b-nav-item>
+                <b-nav-item href="/personal" class="tab-dark ml-auto" :disabled="Object.keys(modes).length <= 0">Personal ></b-nav-item>
             </b-nav>
 
             <transition name="slide-hor" mode="out-in">
@@ -66,8 +66,11 @@
                 <b-card key="loading" v-else-if="modeLoading">
                     Loading mode content.
                 </b-card>
-                <b-card key="none" v-else>
+                <b-card key="none" v-else-if="Object.keys(modes).length > 0">
                     Select a mode.
+                </b-card>
+                <b-card key="create-mode">
+                    No modes found. <a href="#">Go and create one!</a>
                 </b-card>
             </transition>
         </div>
@@ -116,11 +119,11 @@ export default {
             app.$root.loading = true
 
             axios.get('/v1/api/admin/personal/get-modes')
-            .then(function (resp) {
+            .then((resp) => {
                 app.modes = resp.data.modes
                 app.$root.loading = false
-            }).catch(function (resp) {
-                app.$root.store.setMessageAction("Could not load modes", 'danger')
+            }).catch((err) => {
+                app.$root.store.setMessageAction(err.response.data.message || "Could not load modes", 'danger')
                 app.$root.loading = false
             })
         },
@@ -130,11 +133,11 @@ export default {
 
             axios.post('/v1/api/admin/personal/get-mode-content', {
                 slug: app.$route.params.slug
-            }).then(function (resp) {
+            }).then((resp) => {
                 app.modeContent = resp.data
                 app.modeLoading = false
-            }).catch(function (resp) {
-                app.$root.store.setMessageAction("Could not load modes", 'danger')
+            }).catch((err) => {
+                app.$root.store.setMessageAction(err.response.data.message || "Could not load modes", 'danger')
                 app.modeLoading = false
             })
         }

@@ -15,6 +15,10 @@ use DOMDocument;
 
 class PersonalController extends Controller
 {
+    public function __construct() {
+        // 
+    }
+    
     public function index()
     {
         $bing = new BingPhoto([
@@ -30,17 +34,21 @@ class PersonalController extends Controller
 
     public function getModes(Request $request)
     {
+        $user = Auth::user();
+
         return response([
-            'modes' => Mode::get()->keyBy('slug')->toArray(),
+            'modes' => $user->modes->keyBy('slug')->toArray(),
         ], 200);
     }
 
     public function getBaseData(Request $request)
     {
+        $user = Auth::user();
+        
         if(!$request->input('slug')) {
-            $mode = Mode::where('default', true)->first();
+            $mode = $user->modes()->where('default', true)->first();
         } else {
-            $mode = Mode::where('slug', $request->slug)->first();
+            $mode = $user->modes()->where('slug', $request->slug)->first();
         }
 
         return response([
@@ -51,10 +59,12 @@ class PersonalController extends Controller
 
     public function getFeeds(Request $request)
     {
+        $user = Auth::user();
+        
         if(!$request->input('slug')) {
-            $mode = Mode::where('default', true)->first();
+            $mode = $user->modes()->where('default', true)->first();
         } else {
-            $mode = Mode::where('slug', $request->slug)->first();
+            $mode = $user->modes()->where('slug', $request->slug)->first();
         }
 
         return response([

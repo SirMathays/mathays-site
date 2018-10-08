@@ -39,6 +39,11 @@ class Person extends Authenticatable
         'last_name',
     ];
 
+    public function modes()
+    {
+        return $this->hasMany('Mathays\Personal\Mode');
+    }
+
     public function getAvatarAttribute()
     {
         return md5($this->email);

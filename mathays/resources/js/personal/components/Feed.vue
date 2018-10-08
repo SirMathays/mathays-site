@@ -4,7 +4,7 @@
             <h1>{{ feed.title }}</h1>
         </div>
 
-        <div v-if="!hideContent" :style="'color: ' + feed.theme_color" class="feed-row" v-for="(row, index) in feed.rss_feed" :key="index">
+        <div :style="'color: ' + feed.theme_color" class="feed-row" v-for="(row, index) in feed.rss_feed" :key="index">
             <h2><a :href="row.link" target="_blank">{{ row.title }}</a></h2>
             
             <p v-if="row.description">{{ row.description }}</p>
@@ -24,10 +24,6 @@ export default {
     },
     props: {
         feed: {},
-        hideContent: {
-            type: Boolean,
-            required: true,
-        },
     },
 }
 </script>

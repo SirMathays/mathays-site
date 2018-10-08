@@ -49,22 +49,6 @@
 	transform: translateY(-100%);
 }
 
-// HORIZONTAL SLIDE ANIMATION
-.slide-hor-enter-active,
-.slide-hor-leave-active {
-    transition: .2s
-}
-
-.slide-hor-enter {
-	opacity: 0;
-	transform: translateX(10px);
-}
-
-.slide-hor-leave-to {
-	opacity: 0;
-	transform: translateX(-10px);
-}
-
 // VERTICAL SLIDE ANIMATION
 .slide-ver-enter-active,
 .slide-ver-leave-active {

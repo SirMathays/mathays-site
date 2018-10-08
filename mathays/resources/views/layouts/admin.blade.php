@@ -28,15 +28,15 @@
     <title>{{ config('app.name', 'Laravel') }} - Admin</title>
 
     <!-- Scripts -->
-    @if(empty($excludeVue)) <script src="{{ asset('js/admin.js') }}" defer></script> @endif
+    @if(empty($excludeVue)) <script src="{{ mix('js/admin.js') }}" defer></script> @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
     @if(env('APP_ENV') != 'production')

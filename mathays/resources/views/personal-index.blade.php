@@ -8,14 +8,20 @@
             <h1>Hello, {{ $user->first_name }}!</h1>
             <h2 v-html="now.format('DD.MM.[1]YYYY')"></h2>
 
-            <draggable element="nav" v-model="modeData.links">
+            <nav>
                 <transition-group tag="div" class="links" name="slide-ver">
-                    <a v-for="link in modeData.links" :key="link.id" class="link" v-bind:class="link.color" :href="link.url" target="_blank">
+                    <a 
+                        v-for="link in modeData.links" 
+                        :key="link.id" 
+                        :class="['link', link.color]" 
+                        :href="link.url" 
+                        target="_blank"
+                    >
                         <img :src="link.favicon_url">
                         <span v-html="link.name"></span>
                     </a>
                 </transition-group>
-            </draggable>
+            </nav>
         </header>
 
         <div class="content">
