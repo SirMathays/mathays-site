@@ -20,7 +20,12 @@ class Feed extends Model
     {
         $i = 0;
         $rss = new DOMDocument();
-        $rss->load($this->url);
+
+        try {
+            $rss->load($this->url);
+        } catch (\Exception $e) {
+            return false;
+        }
         
         foreach($rss->getElementsByTagName('item') as $item) {
             if($i >= $this->limit) break;

@@ -229,7 +229,7 @@ a.card {
     text-decoration: none;
 
     > .video-title {
-      padding-left: 12px;
+      padding-left: 1em;
     }
   }
 }
@@ -414,6 +414,10 @@ footer.site-footer {
   p {
     margin: 0;
   }
+
+  @media screen and (max-width: $sm) {
+    font-size: 1.5em;
+  }
 }
 
 .video-title::after {
@@ -438,7 +442,7 @@ footer.site-footer {
   position: fixed;
   bottom: 0;
   padding: 1.5rem;
-  z-index: 100;
+  z-index: 1059;
 
   @media screen and (min-width: $md) {
     left: 50%;

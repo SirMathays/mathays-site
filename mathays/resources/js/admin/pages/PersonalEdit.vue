@@ -17,21 +17,22 @@
                                 data-title="Links" 
                                 v-model="modeContent.links" 
                                 @start="showTrash = true" 
-                                @end="showTrash = false"
+                                @end="handleOrder('links')"
                             >
                                 <b-list-group-item 
+                                    tag="a"
+                                    href="javascript:void(0)"
                                     class="text-center"
                                     v-for="(link, index) in modeContent.links" 
+                                    @click.prevent="activeLink = link.id"
                                     :key="index"
-                                    :variant="link.color">
-                                    <span>{{ link.name }}</span>
-                                    <a href="#">Edit</a>
-                                </b-list-group-item>
+                                    :variant="link.color"
+                                >{{ link.name }}</b-list-group-item>
                             </draggable>
                         </b-form-group>
 
                         <b-form-group>
-                            <b-btn>Add link</b-btn>
+                            <b-btn @click="activeLink = 'new'">Add link</b-btn>
                         </b-form-group>
                     </div>
 
@@ -44,18 +45,21 @@
                                 data-title="Feeds" 
                                 v-model="modeContent.feeds" 
                                 @start="showTrash = true" 
-                                @end="showTrash = false"
+                                @end="handleOrder('feeds')"
                             >
                                 <b-list-group-item 
+                                    tag="a"
+                                    href="javascript:void(0)"
                                     class="text-center"
                                     v-for="(feed, index) in modeContent.feeds" 
+                                    @click.prevent="activeFeed = feed.id"
                                     :key="index"
                                 >{{ feed.title }}</b-list-group-item>                    
                             </draggable>
                         </b-form-group>
 
                         <b-form-group>
-                            <b-btn>Add link</b-btn>
+                            <b-btn @click="activeFeed = 'new'">Add feed</b-btn>
                         </b-form-group>
                     </div>
 
@@ -69,23 +73,38 @@
                 <b-card key="none" v-else-if="Object.keys(modes).length > 0">
                     Select a mode.
                 </b-card>
-                <b-card key="create-mode">
+                <b-card key="create-mode" v-else>
                     No modes found. <a href="#">Go and create one!</a>
                 </b-card>
             </transition>
         </div>
-    </b-container>    
+
+        <link-modal
+            :visible="showModal == 'link'"
+            :link="activeLinkData"
+            @hide="showModal = undefined"
+            @save="handleModalUpdate"
+        />
+
+        <feed-modal
+            :visible="showModal == 'feed'"
+            :feed="activeFeedData"
+            @hide="showModal = undefined"
+            @save="handleModalUpdate"
+        />
+    </b-container>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
+import FeedModal from '../components/FeedModal'
+import LinkModal from '../components/LinkModal'
 
 export default {
     data() {
         return {
             saving: false,
             modeLoading: false,
-            showTrash: false,
             modes: {},
             modeContent: {
                 links: [],
@@ -95,11 +114,40 @@ export default {
                 options: { group: { name: 'trash', put: () => true, pull: false }},
                 rows: [],
             },
+            showTrash: false,
+            activeFeed: undefined,
+            activeLink: undefined,
         }
     },
     computed: {
         activeMode() {
             return this.$route.params.slug
+        },
+        showModal: {
+            get() {
+                if (this.activeFeed) return 'feed'
+                else if (this.activeLink) return 'link'
+
+                return false
+            },
+            set(value) {
+                if (this.activeFeed) this.activeFeed = value
+                if (this.activeLink) this.activeLink = value
+            }
+        },
+        activeLinkData() {
+            if(!this.activeLink || this.activeLink == 'new') return undefined
+
+            return this.modeContent.links.find(item => {
+                return item.id == this.activeLink
+            })
+        },
+        activeFeedData() {
+            if(!this.activeFeed || this.activeFeed == 'new') return undefined
+
+            return this.modeContent.feeds.find(item => {
+                return item.id == this.activeFeed
+            })
         }
     },
     watch: {
@@ -114,6 +162,42 @@ export default {
         }
     },
     methods: {
+        handleModalUpdate() {
+            this.getModeContent()
+            this.showModal = undefined
+        },
+        deleteRow(target) {
+            
+        },
+        handleOrder(target) {
+            var app = this
+
+            app.showTrash = false
+            var orderChanged = false
+
+            var rows = []
+
+            app.modeContent[target].map((item, key) => {
+                var before = item.order
+                var after = key+1
+
+                if(before !== after) {
+                    app.modeContent[target][key].order = after
+                    rows.push({id: item.id, order: after})
+                    orderChanged = true
+                }
+            })
+
+            if(!orderChanged) return
+
+            axios.post('/v1/api/admin/personal/handle-order', {
+                slug: app.$route.params.slug, [target]: rows
+            }).then((resp) => {
+                // 
+            }).catch((err) => {
+                app.$root.store.setMessageAction(err.response.data.message || "Saving order was unsuccessful", 'danger')
+            })
+        },
         getModes() {
             var app = this
             app.$root.loading = true
@@ -146,7 +230,9 @@ export default {
         this.getModes()
     },
     components: {
-        draggable
+        draggable,
+        FeedModal,
+        LinkModal
     }
 }
 </script>

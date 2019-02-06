@@ -9,6 +9,7 @@
         "debril/feed-io": "^4.3",
         "fideloper/proxy": "^4.0",
         "grubersjoe/bing-daily-photo": "^1.1",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "messerli90/igdb": "^1.0"

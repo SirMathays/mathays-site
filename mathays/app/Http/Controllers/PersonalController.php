@@ -12,6 +12,7 @@ use Auth;
 use BingPhoto;
 
 use DOMDocument;
+use Mathays\Personal\Feed;
 
 class PersonalController extends Controller
 {

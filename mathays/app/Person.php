@@ -59,4 +59,14 @@ class Person extends Authenticatable
         $lastName = array_values(array_slice(explode(' ', $this->name), -1))[0];
         return $lastName != $this->first_name ? $lastName : NULL;
     }
+
+    public static function getShop()
+    {
+        $client = new \GuzzleHttp\Client();
+        $res = $client->get('https://api.printful.com/store', [
+            'authentication' => 'Basic ' . base64_encode(env('PRINTFUL_KEY'))
+        ]);
+
+        return json_decode($res->getBody()->getContents());
+    }
 }

@@ -4,7 +4,10 @@
             <h1>{{ feed.title }}</h1>
         </div>
 
-        <div :style="'color: ' + feed.theme_color" class="feed-row" v-for="(row, index) in feed.rss_feed" :key="index">
+        <div v-if="feed.rss_feed === false">
+            <h5 class="text-center my-4">Invalid RSS-feed</h5>
+        </div>
+        <div v-else :style="'color: ' + feed.theme_color" class="feed-row" v-for="(row, index) in feed.rss_feed" :key="index">
             <h2><a :href="row.link" target="_blank">{{ row.title }}</a></h2>
             
             <p v-if="row.description">{{ row.description }}</p>

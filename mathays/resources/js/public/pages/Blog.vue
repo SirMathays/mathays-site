@@ -46,7 +46,12 @@
                     </template>
                 </paginate>
 
-                <paginate-links for="posts" :showStepLinks="true" :stepLinks="{ prev: '‹', next: '›' }"></paginate-links>
+                <paginate-links 
+                    for="posts" 
+                    :hide-single-page="true" 
+                    :showStepLinks="true" 
+                    :stepLinks="{ prev: '‹', next: '›' }"
+                />
             </b-card>
         </b-container>
     </div>

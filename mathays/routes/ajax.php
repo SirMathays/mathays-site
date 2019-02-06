@@ -39,6 +39,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::group(['prefix' => 'personal'], function() {
         Route::get('get-modes', 'Admin\PersonalModeController@getModes');
         Route::post('get-mode-content', 'Admin\PersonalModeController@getModeContent');
+
+        Route::post('save-feed-data', 'Admin\PersonalModeController@saveFeedData');
+        Route::post('save-link-data', 'Admin\PersonalModeController@saveLinkData');
+        Route::post('handle-order', 'Admin\PersonalModeController@handleOrder');
     });
 });
 

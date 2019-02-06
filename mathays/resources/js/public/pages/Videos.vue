@@ -13,8 +13,10 @@
         </v-container>
 
         <b-container>
-            <b-card-group class="card-grid gr-3 mb-4">
-                <b-card v-if="videos.length > 0" v-for="(video, index) in videos" :key="index" 
+            <paginate name="videos" tag="b-card-group" class="card-grid gr-3 mb-4" :list="videos.rows" :per="videos.per">
+                <b-card 
+                    v-for="(video, index) in paginated('videos')"
+                    :key="index"
                     no-body
                     :img-src="thumbnail(video)"
                     :img-alt="video.title"
@@ -23,7 +25,14 @@
                     @click="e => linkTo(e, video.yid)">
                     <div class="video-title">{{ video.title }}</div>
                 </b-card>
-            </b-card-group>   
+            </paginate>
+
+            <paginate-links 
+                for="videos" 
+                :hide-single-page="true" 
+                :showStepLinks="true" 
+                :stepLinks="{ prev: '‹', next: '›' }"
+            />
         </b-container>
     </div>
 </template>
@@ -32,7 +41,12 @@
 export default {
     data() {
         return {
-            videos: [],
+            paginate: ['videos'],
+            videos: {
+                filter: undefined,
+                rows: [],
+                per: 10
+            },
             newest: undefined
         }
     },
@@ -50,7 +64,7 @@ export default {
 
             axios.get('/v1/api/get-videos')
             .then(function (resp) {
-                app.videos = resp.data.videos
+                app.videos.rows = resp.data.videos
                 app.newest = resp.data.newest
                 app.$root.loading = false
             }).catch(function (resp) {
